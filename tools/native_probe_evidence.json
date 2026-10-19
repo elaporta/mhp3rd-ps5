@@ -1,0 +1,11 @@
+{
+  "build": "probe-0.1.6-runtime",
+  "title_id": "PPSA99373",
+  "status": "HARDWARE_VERIFIED",
+  "reported_date": "2026-10-13",
+  "manual_runs": 2,
+  "scope": "Native framework/SDK services, persistence, cleanup and GE regression; sufficient project gate to begin full-game adapter builds",
+  "returned_log_sha256": "e7794a66102b0af135a0fa5aab7a7fd60a1e27fb1880c4abb74cb47ac86f451a",
+  "provenance": "Maintainer archive docs/archive/RUNTIME_PORT.md, Recorded console result 2026-10-13",
+  "does_not_verify_new_builds": true
+}

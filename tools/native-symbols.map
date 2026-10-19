@@ -1,0 +1,5 @@
+/* Native titles expose no application symbols. Undefined optional weak Mesa
+ * entry points must resolve locally to NULL, not become console imports. */
+{
+    local: *;
+};

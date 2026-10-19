@@ -1,0 +1,946 @@
+{
+  "upstream_commit": "03e7ca2d5ebd1fe4e7958235f4041716e3637cb6",
+  "license": "MIT upstream; GPL-3.0-or-later projection/adapters",
+  "sources": {
+    "profiles/mhp3rd/host/adhoc/client.cpp": {
+      "input_sha256": "b0594f5e70bf32e445d25e1c07b6d63b5449749edcf712e8f9e2ee92f2b8d3f1",
+      "output_sha256": "f94d4903e217da64102f7b67b6343b7a1480fbd6e60f52cea8747d4487625f02"
+    },
+    "profiles/mhp3rd/host/adhoc/client.hpp": {
+      "input_sha256": "03258fb9f26156d0f249ecec2dff5434687900a281bafba49da8872d958f1db4",
+      "output_sha256": "4ce4a0c9898f0a594c1952cd379f22ec40c017b64d71e6148519caf113e479a3"
+    },
+    "profiles/mhp3rd/host/adhoc/discovery.cpp": {
+      "input_sha256": "abed23f2db807c2198c19cef2866e0ae7170ac44a75b5e81ebae2e9e513b22a9",
+      "output_sha256": "cf89bf7f3818cea46f737f28356c001924a11f45ae36e3236d07c23be26e5037"
+    },
+    "profiles/mhp3rd/host/adhoc/discovery.hpp": {
+      "input_sha256": "06017f4444c5ec0914a3feb151b30eee0fc88aadf27eb2bd959a3d6fd370024f",
+      "output_sha256": "0b1d69922eded888a6be5351eead7445f090a06107a4491c576759dd2a5b9f94"
+    },
+    "profiles/mhp3rd/host/adhoc/host.cpp": {
+      "input_sha256": "bca9fd89c563d0dd097a9768fb70138313d35545bbba7da72bd106b305b9db9c",
+      "output_sha256": "0234d803f547c5980bb7310ad6161b28d94a61ac63ebdec5da8f45af3f966654"
+    },
+    "profiles/mhp3rd/host/adhoc/protocol.hpp": {
+      "input_sha256": "6635855b29fc800194c924558dbe1171ae82779fe04e4f8be2f862aadfc71b11",
+      "output_sha256": "19a8ad791a6ae12ce0fe656eaeafaf80a56a262a992bc18be1d9f7228ba87777"
+    },
+    "profiles/mhp3rd/host/adhoc/server.cpp": {
+      "input_sha256": "5b2bc78e211d13123b5779a03873647ed6b0877030670fa9e34b95bf67afed4f",
+      "output_sha256": "99d2aec6024bdcfa6036e732d8ef10b2b8321d2476aa7bdffbb80b6252386995"
+    },
+    "profiles/mhp3rd/host/adhoc/server.hpp": {
+      "input_sha256": "6cbca15c439cfcea029d7840e88eae0716882b7c5f0cce004559602a857c0506",
+      "output_sha256": "c82a10d11c6335c281f495598344381a7669bb3cc60984b2e4db5178bcb85fa5"
+    },
+    "profiles/mhp3rd/host/adhoc/session.hpp": {
+      "input_sha256": "db5d1c36cd5aade86f9136e63a691f2faeaf07f465aeb8c694ca4ff39b22c043",
+      "output_sha256": "9bb71438c946ad9c098aec738f191e8378d9c935786571e2251d1824bb37129e"
+    },
+    "profiles/mhp3rd/host/adhoc/sockets.hpp": {
+      "input_sha256": "de9e7674949c0d76677d1a6fac08a35d1baf2fe3c2c04c68f42a9bff37360bba",
+      "output_sha256": "0971ad70ba1b3d21fb3710e8222344a5d53769f5d05c877bd3cd36542294ae16"
+    },
+    "profiles/mhp3rd/host/app_paths.cpp": {
+      "input_sha256": "eedeba39592c8d1e0ca3f53cb9f0256064c8a5d5cf04c61350f04218c8983294",
+      "output_sha256": "1c7ffbcf207f620a135f28b7b367ad86362b0da9f7e124700d24f06f2113e18b"
+    },
+    "profiles/mhp3rd/host/app_paths.hpp": {
+      "input_sha256": "17ac7c479a32e74dc2b1e80cce27db2e2d601cfdac31926a25006d5528eba4c9",
+      "output_sha256": "83bdb4fc2f2d94c98d5180485c324164eceab27343921ba104e87c8f00286d23"
+    },
+    "profiles/mhp3rd/host/audio/atrac_decoder.cpp": {
+      "input_sha256": "d9a864a49119a28b77dfcb5992d8e998b12e309af077ef6e33c1e66986b7d0a2",
+      "output_sha256": "1c20ae522d6b5b894d72fd0f2beb868a2bd0b993cd49795d8706b3059dd513e0"
+    },
+    "profiles/mhp3rd/host/audio/atrac_decoder.hpp": {
+      "input_sha256": "f518462ed790672bd7a3eaee3ee67781574ea72623dde042b4957e636afeace5",
+      "output_sha256": "4fecb26e7a556c0e034fbfb4cbffdfae05518ec583b26095c027541bad9af2d8"
+    },
+    "profiles/mhp3rd/host/audio/audio_sink.cpp": {
+      "input_sha256": "f903a3754a8950fb8e6e2dc90446f0537029d06f4fb16741cc093963939dd069",
+      "output_sha256": "6367cf0b611c6930a1bc2f12db70f8d2bb83cb7aed64c50cf2caf20397c28a58"
+    },
+    "profiles/mhp3rd/host/audio/audio_sink.hpp": {
+      "input_sha256": "8567e9ef3cb07f9eba8fcd1a2bb24931dc1cea549d46b3af46cb9b3dacc45fbc",
+      "output_sha256": "0cbd01148ce92a39b2176b47126901f15a2136c66487f58a1ef1057dc029753b"
+    },
+    "profiles/mhp3rd/host/audio/guest_pcm.cpp": {
+      "input_sha256": "2cf8adfd776cb89aba2db9c059555d8796ce7d3602d1cf903231c104f62128b0",
+      "output_sha256": "e9218b586bc89d9ea87ec57d3b00aa7e5578ec26e24f77b3557d3336395d2121"
+    },
+    "profiles/mhp3rd/host/audio/guest_pcm.hpp": {
+      "input_sha256": "d6c1e3337eeab355d2ac8729269a71eb387275639e28e57e7b3e6245ef599949",
+      "output_sha256": "e9b2b4a1f5623968ec5e681f51f38da084197aeba44d38e8638d9745686889d9"
+    },
+    "profiles/mhp3rd/host/audio/sas_core.cpp": {
+      "input_sha256": "6a8278334fade9a2848125705dbde4fa0d55939e9d591c1f4959622e420bdbbb",
+      "output_sha256": "8281c2bac88566bf69f31e513a807299fcfd045bbe4cada76ebb7ece5ae44f1c"
+    },
+    "profiles/mhp3rd/host/audio/sas_core.hpp": {
+      "input_sha256": "fe4bb1bb56a2d270b428a3166d6f42a6103fa3e63fbd56880169f2f7aa55322f",
+      "output_sha256": "9300de15a8e652f2de7cc6df35e76ed7ab7352d9e2b342649fb80c4c833808b2"
+    },
+    "profiles/mhp3rd/host/camera/camera_input.cpp": {
+      "input_sha256": "e61d34c3363d9f6a9922b53ad46a9c497712be1a1198ed43f03d1353cbdbdabd",
+      "output_sha256": "0cd1b996bfa7e7586cd9b02638ea8a707dc76aaded5d51c3aefc2eab0f13d025"
+    },
+    "profiles/mhp3rd/host/camera/camera_input.hpp": {
+      "input_sha256": "ede30b313b7cfb92a6b7eb0ddf4ce08ff35998de4f7b5bed4382cff32987cf2e",
+      "output_sha256": "1c602ad5c0ed8e5bb876dc1bd7f6223a9c3a56576b7e4f24571a064685ea1d44"
+    },
+    "profiles/mhp3rd/host/camera/free_camera.cpp": {
+      "input_sha256": "82e6c10183e171566e069cec7ffc65a6be3ac9803a9ffdead6b2554e98faf717",
+      "output_sha256": "241f5695f47a043daee4327d9be3805c3a5a874196eef2ad7c84a9d05a95af34"
+    },
+    "profiles/mhp3rd/host/camera/free_camera.hpp": {
+      "input_sha256": "782b8faf4847c64c449f6927cedb7b13a7ab05b14ef18112e28aafdabdcca036",
+      "output_sha256": "36fef3e1dd9c5a6198ee6236ac9e659013ababb890d9d6b9d914f1d53ea996df"
+    },
+    "profiles/mhp3rd/host/camera/game_aspect.cpp": {
+      "input_sha256": "8a6692a925496f994c36c526f7075a24069a97e916a990b4bdc338444a260293",
+      "output_sha256": "fe57fe3d8d615f0596118a0734a267ec0730b25a6d00e39d0e70f0b8cc98b521"
+    },
+    "profiles/mhp3rd/host/camera/game_aspect.hpp": {
+      "input_sha256": "a04cc3b6f276328949158f64e75052079b463c590f11391c5d29e96f7ed2f0d9",
+      "output_sha256": "9aa263bdecf6ed6b29fd6977466b580445461895492cba32ffd7677af8fb755d"
+    },
+    "profiles/mhp3rd/host/camera/game_camera.cpp": {
+      "input_sha256": "7f6a0083f1c03cceb9a23689fbf3f3d6f87e137b74e397495ae3e73f290fed79",
+      "output_sha256": "a2928a996cb45964c69142fc00b62647c5f2af37abc1fd8ffd0a57116f64b493"
+    },
+    "profiles/mhp3rd/host/camera/game_camera.hpp": {
+      "input_sha256": "2b329a57dc0aa3f48ceba6814475efc1fee3f0f2cf2ab0e51f85f3ee024e6c24",
+      "output_sha256": "c702ce21ab41944d36f30de39751b1cf0ac3d7c42b7071c0ca03a145c26b142c"
+    },
+    "profiles/mhp3rd/host/camera/lock_on.cpp": {
+      "input_sha256": "5051841876219685fa19c9cd8ceda4e5892191c8ecd39b6ad6ccb57c0a53b21d",
+      "output_sha256": "6920272a92d3f0ae76dc03efcc207aed9d7fe7c3dd3d27ef967878ab3ef1c766"
+    },
+    "profiles/mhp3rd/host/camera/lock_on.hpp": {
+      "input_sha256": "dd7da05b90b61e5e69eb08ecc0be74b933524c3abbc20673f364ba65c77c2a02",
+      "output_sha256": "eec4d9714dfd9ccc555eb56868723897694bc067a4dbe8511b0ae44eec2695b5"
+    },
+    "profiles/mhp3rd/host/camera_probe.cpp": {
+      "input_sha256": "d63de281e39adb585f1c249b9a0c9214b7a711095986e9419e210fc2c2d7100c",
+      "output_sha256": "8714a14526883fb09c798105409bd86be37471ebb7ab7bc6cdcb157d8d90dc7e"
+    },
+    "profiles/mhp3rd/host/camera_probe.hpp": {
+      "input_sha256": "1703d18b83555ce49d528d25359cafb688cc45ae6c8ac89424bf2647e39cf83b",
+      "output_sha256": "8ec78120ad3ec2202c9a1a4aac884e64a8b42f115e07347b4204874458afc25d"
+    },
+    "profiles/mhp3rd/host/debug/debug_console.cpp": {
+      "input_sha256": "5ad4be2373a73bba7ab4b8a8df39bfec8d30c55f38f642da18682b1cf9c41495",
+      "output_sha256": "1a04f7329d31b1b46166d656ee78893a232133bed904d4dc24d38e7c22ec20c6"
+    },
+    "profiles/mhp3rd/host/debug/debug_console.hpp": {
+      "input_sha256": "ba9462911f3fdfb46298aaa895113cc4b6b309b881212247e46d5b78fb143e62",
+      "output_sha256": "6e64e3c729505952c9245246539cb517dcc48ea34a051a86ae72b9c3142460bf"
+    },
+    "profiles/mhp3rd/host/debug/debug_tools.cpp": {
+      "input_sha256": "6fddc432f225052e3797aebd003e333d1f0d5faa190c0bd05cbd7c9e64142d5e",
+      "output_sha256": "b6970eb6f2aa1d7265a08c5eac5db6cbfccf76bbae1fe6db5495c3b093b5e6b8"
+    },
+    "profiles/mhp3rd/host/debug/debug_tools.hpp": {
+      "input_sha256": "09aa66d6758e707f4c25edf910e540a317c9160c0f25ee9ee90bac53de631f07",
+      "output_sha256": "bb3100e57c83e4d13e6a587bd84dbfe3c92521c21480f58f41738568481e4471"
+    },
+    "profiles/mhp3rd/host/debug/game_state.cpp": {
+      "input_sha256": "eadaf554af76f5e0a0e41fe9b8d67e75450583266f385d9df4d00ade6e92c00e",
+      "output_sha256": "4ab16d1ae7a1c4d36ec49ecf9643df80397ca5efab50fcbe6c252b64e028b511"
+    },
+    "profiles/mhp3rd/host/debug/game_state.hpp": {
+      "input_sha256": "932f726319efbccfc87c967d20ddacfd227cb91d3c1d077555d1637379038d14",
+      "output_sha256": "65355b118e8021367d5b558475e63af6f124f269d17bfee5f6c498329ce51865"
+    },
+    "profiles/mhp3rd/host/debug/quest_start.cpp": {
+      "input_sha256": "3618a16fc7c78b460b0f6e2355ea64cd21370000111db9c94c4a1aa6917de818",
+      "output_sha256": "f53dd0e38569b12227d97b5b7dc422788d6114e524d791070a4388d5af13a04c"
+    },
+    "profiles/mhp3rd/host/debug/quest_start.hpp": {
+      "input_sha256": "5b278711c0aca0e090b0cc25ae7439db2fb9f34a284638e092395711c33ae4a8",
+      "output_sha256": "61c3f4881f4574b10e64db300220f99109684a36c911a049c0ed4caaf9a63e4b"
+    },
+    "profiles/mhp3rd/host/fonts/game_font.cpp": {
+      "input_sha256": "560d8d801a383fbe9a1f532acfa41c258cafaf6f8c67cf292c226b7d6f3e1ef2",
+      "output_sha256": "997565e25053eb83ae31c87681f5ab24a572bfdaea678e564a98a882becddcdc"
+    },
+    "profiles/mhp3rd/host/fonts/game_font.hpp": {
+      "input_sha256": "aaa3f12152c49d0a5ffc87518df4620cffb4bec45ee1420ee29ffb822820c83e",
+      "output_sha256": "18a4477718cc2b47f40408f2095df1bf1919e576438820da379438b912279b06"
+    },
+    "profiles/mhp3rd/host/game/equipment_models.cpp": {
+      "input_sha256": "dac9cfc09fdd6188833af03fb02a8f8aab6b77cc2b6414810da2bc04aa5c5ec8",
+      "output_sha256": "d63c317ee8c5abdd90e1e28b36495cbf376941007525fd2c65f70e5a10d5a4ba"
+    },
+    "profiles/mhp3rd/host/game/equipment_models.hpp": {
+      "input_sha256": "a0ab933f9910d5f9fd13b0352278f77dd7b0c253c0c4f72ab016837bd416d5a1",
+      "output_sha256": "fc3a7cb0167003a04654aef248c25971221811f9e99673112c612875479efd40"
+    },
+    "profiles/mhp3rd/host/game/game_data.cpp": {
+      "input_sha256": "9f9e4037fb47f86d311daa774a64f39560d50d96b548fb270daad4a9fbc421c0",
+      "output_sha256": "0bd9bc1313813fd0699efb794adfefbdeba4ef6c0bbadee33e24d10ea5593679"
+    },
+    "profiles/mhp3rd/host/game/game_data.hpp": {
+      "input_sha256": "e413610546b998df5285b359d8a59459ae44f36f1be2448c163d24e50f7b5b2a",
+      "output_sha256": "6c52fcaa2d29f3660d23b54d78f781278f4980839da0ad0b5281bb05842dbc38"
+    },
+    "profiles/mhp3rd/host/game/guest_ram.cpp": {
+      "input_sha256": "4f4f1e74f4d2d9840ef24e692f736918c4df253c37ef0d0fa39e8e14bad603ff",
+      "output_sha256": "fa2deeae8840481cc60659b29a4b5c043f08426b5732bf77eb6de040cea857bf"
+    },
+    "profiles/mhp3rd/host/game/guest_ram.hpp": {
+      "input_sha256": "444bacd7ca870c0fdbb52bc520772b8fdc28dc6e8721080243c19f10464d4aa4",
+      "output_sha256": "4298ca04094d0f2bc3e7ffd2a795b0c0a79e79ea9df85708cca8a9b0c3efc5c7"
+    },
+    "profiles/mhp3rd/host/game/layered_armor.cpp": {
+      "input_sha256": "4f3cf780707aa370b637fedd0e8445bd26b8a78ec6bf3d199dd44c99f72149d2",
+      "output_sha256": "c06d6823ddde8a1e9024962f0008289fae76a9f8aae71f8281c9d652b8d081f5"
+    },
+    "profiles/mhp3rd/host/game/layered_armor.hpp": {
+      "input_sha256": "d33651b0d5e4d9bb606e247f6ca72792e402a3cf252236f081d62c709c5c03c9",
+      "output_sha256": "c53b2eca2febce80956f88e7f4cf9044d12abd70fc5d3e50dca7da9ee1040a5e"
+    },
+    "profiles/mhp3rd/host/game/layered_armor_hook.cpp": {
+      "input_sha256": "79c59eed86045035688e87b5d55057a32669e46552d1b7f3f03706f4cd5f8f72",
+      "output_sha256": "9474c8f855a44e4056306ccb56b8d7d06484065a1bd1f8a531282f917e529033"
+    },
+    "profiles/mhp3rd/host/generated_stub.cpp": {
+      "input_sha256": "f1689dbbc11c6514911ca3dfc8cd4c36a7c2b0d7252e7f8df47564867b85304e",
+      "output_sha256": "6ff0505626af87650ce7c407087de9ae0ae7653b62de3f72b1d2c917c7294578"
+    },
+    "profiles/mhp3rd/host/gpu/alpha_test.hpp": {
+      "input_sha256": "67350b73d2bdc4c7ffc37a2d172b2a55aa48a3b9c958ba25f234bd9702314398",
+      "output_sha256": "f73592bc814ef1b55b51e0f2b373ac76a7638f344584dddf1312ed0fb79679d3"
+    },
+    "profiles/mhp3rd/host/gpu/descriptor_pools.cpp": {
+      "input_sha256": "4ea5725c951c7457d81525e915c50025db2330f3ad090ef397439da8c976f8fb",
+      "output_sha256": "1a4331583700440346012a61be6abc0708bb5fba3722f9ca3c52b9cc6f26ffcf"
+    },
+    "profiles/mhp3rd/host/gpu/descriptor_pools.hpp": {
+      "input_sha256": "ebab5dceba9e37387d8c36875928c035481147c42e29b20776a0248cae6ed817",
+      "output_sha256": "47de5003b1f7efe61b0c11e2d94c84907c11afa3773a1fbc083554d4a2ba2dfc"
+    },
+    "profiles/mhp3rd/host/gpu/device_report.cpp": {
+      "input_sha256": "a7151f74a3d01d7e5ed0c24e0f0cd3281ce7d2b8a492c8ed5451311b9005c72c",
+      "output_sha256": "5452f04e5f50e422b93df3556c04f9f999885e27e4341dd66fb10cd253c7e7d7"
+    },
+    "profiles/mhp3rd/host/gpu/device_report.hpp": {
+      "input_sha256": "5b426ba3ebb2039ac19897403b75c9f681e1088193f4f4a380736ee18a6c6d50",
+      "output_sha256": "c0918527eef1fe0dc720b3c1f200b9405b1d0ed77610afed1c674273c3ba7fb9"
+    },
+    "profiles/mhp3rd/host/gpu/frame_interpolation.cpp": {
+      "input_sha256": "6edcc31b56853a23e6682b1d13806beca7abcffec6ec11cc7d3c9bcc007f5aa2",
+      "output_sha256": "7ce0194ee5b8d5929b7d3c35de5baea4e696010b5fbe45064f28c9291719402b"
+    },
+    "profiles/mhp3rd/host/gpu/frame_interpolation.hpp": {
+      "input_sha256": "16e5a81f7f73648868a4dd8e3236401240ac005a535896442d10b26b40d8d8fa",
+      "output_sha256": "fdd6e378aff7f45e2b6a09bc0fd3a0710d9feac25dfcb1bf087d7aa0e20dcd66"
+    },
+    "profiles/mhp3rd/host/gpu/frame_pacing.cpp": {
+      "input_sha256": "3db1038045b240a8579cdcc15c26207f7ca870cd982147c82283bb90f18eca63",
+      "output_sha256": "e485ec5944da1cd2c37fd70a6f7e7e66127a92bf6c0b3568e2e45c5cd448c030"
+    },
+    "profiles/mhp3rd/host/gpu/frame_pacing.hpp": {
+      "input_sha256": "3fbd52306c837295c84cd455841bd2613f0462b82ffb4a11c883924a35525bad",
+      "output_sha256": "b0d2c888b49efc31ec99ed1deafeb9d20c68ce84f2f071d1635dbcc57e6465f7"
+    },
+    "profiles/mhp3rd/host/gpu/game_hud.cpp": {
+      "input_sha256": "260a346ff3ff3a267feffddcdd2908c15ffadca61b732b94a4ad6fb1719b997b",
+      "output_sha256": "3d445cb565f86d613367389cdf8248b80349e8fc2dc19984eb04fa1c557d9747"
+    },
+    "profiles/mhp3rd/host/gpu/game_hud.hpp": {
+      "input_sha256": "e1518706ff8f740475ffc059639b18dd886770e493cc1acb647595c9183c1c0e",
+      "output_sha256": "5174a79a786451039f13c30376dc53f44f02968fcd82be19125ff08b09ef6b75"
+    },
+    "profiles/mhp3rd/host/gpu/ge_state.cpp": {
+      "input_sha256": "c2d457a0c6c33e27767473531a4edc3c5a11e956624f90bc751bc27b371b4b0d",
+      "output_sha256": "1be46d07be8e42ad028fe842bd38d48f8d2eeecd0b3fd548f9a3e0ebfa033e47"
+    },
+    "profiles/mhp3rd/host/gpu/ge_state.hpp": {
+      "input_sha256": "a7861296b00ba8ae67e0c07d4f1561b3414e3372f3145ddbb4aadd9d2f9b2df8",
+      "output_sha256": "460d24ad4e1697548b36ad34e742c0b3d0655885360b991394afa1bef69deac3"
+    },
+    "profiles/mhp3rd/host/gpu/mmpx.cpp": {
+      "input_sha256": "9f11f1ba2fdb06244ef18b73a2dd90733821be22f047272f2fd897c13c2e0465",
+      "output_sha256": "7fe6a216d1073208573c8ddf767598a497958b943b41af02aa76ca027cc87e34"
+    },
+    "profiles/mhp3rd/host/gpu/mmpx.hpp": {
+      "input_sha256": "6699575fb64cdb2d1f6c78e2535fc25e0577a75d475d7b45388d30e43a7f5818",
+      "output_sha256": "ca0e213fd49c23ed272a6425d27e8405f81fda9db63bce1bc2ed7be4d55567a0"
+    },
+    "profiles/mhp3rd/host/gpu/opaque_alpha.hpp": {
+      "input_sha256": "767d61afd020ce96cf500cc919ad2c427dfc2569a8babb930c8e1f87b29e3a8a",
+      "output_sha256": "ee663c3b225d4c31237aba11385bd8efcd1924730e1156b9239a48c2ba1226b8"
+    },
+    "profiles/mhp3rd/host/gpu/replacement_textures.cpp": {
+      "input_sha256": "df2c882bdd8cb7dfbcbf5954be071b63d4658ca1e79bb8f8c7543478a07950cb",
+      "output_sha256": "a2217533f9b9c60e8b83995ede06e84d16ad9533805f33e10343d4e838f2d602"
+    },
+    "profiles/mhp3rd/host/gpu/replacement_textures.hpp": {
+      "input_sha256": "82b52791876b4b80b4c333c8d59d9737e626eefb90d564e5a7d87eaec2d33ca5",
+      "output_sha256": "be989dcb77d63bc6ff7f557bb292e609fb29b2345776989726637847b8c48bdb"
+    },
+    "profiles/mhp3rd/host/gpu/screenshot.cpp": {
+      "input_sha256": "271d08c049bbc3f5a1f2c8c4074fc46ca7e9769cd3511bbf0ccbf3c7439cc4de",
+      "output_sha256": "126336a4ea35f9c36dd80add09923b3dd611df1bca12febc13a7be8289d837e4"
+    },
+    "profiles/mhp3rd/host/gpu/screenshot.hpp": {
+      "input_sha256": "8bae154f991b54973ebe72e5ab182ba99376ddaa1b1761cf2eeeb16cabcd918f",
+      "output_sha256": "da507d906a71984c452215b3a26351b981f7ba669a462562e770aee663b8faa0"
+    },
+    "profiles/mhp3rd/host/gpu/texture_decode.cpp": {
+      "input_sha256": "88d87600a51e17ee80d3d5fedd1f3ad9b6151afceb6950697b69ad847157b3c8",
+      "output_sha256": "514849fda6a501b9ad099fcb8ebd4e7046fbc9b6fa9e71d60b1d7b05fe836d3b"
+    },
+    "profiles/mhp3rd/host/gpu/texture_decode.hpp": {
+      "input_sha256": "eb3fc079b8dc9a31b9b647f72ae8455e87ccc78e6cade73a5747842642c174e4",
+      "output_sha256": "e902a716dbdf4e20cd98b9b43279ada9ccd7c21419f56de8118748c970f0c29d"
+    },
+    "profiles/mhp3rd/host/gpu/texture_pack.cpp": {
+      "input_sha256": "09914f83411682c121d28ddcce72841a1b5df6afcbf4a65534656a10262a58c1",
+      "output_sha256": "8dca8c462d5322f86c275adab31989613994d87f7c34d297b8244a725bf4b77d"
+    },
+    "profiles/mhp3rd/host/gpu/texture_pack.hpp": {
+      "input_sha256": "19bb0ddbe84b910d7046ee0748ef0fd7d47be2c0b11928f46054fe08320a50b6",
+      "output_sha256": "dc3eb43ff6eb93a79ea12debfb954cf2dddc76a958456db6916bc1c8a132e1aa"
+    },
+    "profiles/mhp3rd/host/gpu/texture_pack_import.cpp": {
+      "input_sha256": "bb460ba284fc95ccc05dd0ffb45190dca2a6240a7eb594677b57a8bfd2bd478e",
+      "output_sha256": "0c2acbaf4068bc27e0aaa8fc4b4565baab3438d92ca7aca0fa4b940dfed04a25"
+    },
+    "profiles/mhp3rd/host/gpu/texture_pack_import.hpp": {
+      "input_sha256": "0e6744f19f3d34bb63c3c0586872554dc484f983a20c54e9662962ef719b8813",
+      "output_sha256": "233bb607fa246ebd86cb65c54f9e419aeeb84f73342fbe520715d63003fc0fc9"
+    },
+    "profiles/mhp3rd/host/gpu/triangle_indices.hpp": {
+      "input_sha256": "d5307683289d74e0b54fdf8d33751f3a43fbb827d71dbe2a5b92911197bbd118",
+      "output_sha256": "a0d1ed76ba98ea0b65c6f3a5a604660dea21b2189adb9b8c9b9ffc131ee5039f"
+    },
+    "profiles/mhp3rd/host/gpu/ui_textures.cpp": {
+      "input_sha256": "599d2dcc49e20d3f914a371ee6518c991c8802b147967476697a89739dd03bc6",
+      "output_sha256": "d2b71aabeb2a934cd49fa07b8ad015fbcc5792893098f4639809ae9e25b5f087"
+    },
+    "profiles/mhp3rd/host/gpu/ui_textures.hpp": {
+      "input_sha256": "b9c184d7b3e6750e7d8cb6bf6f5bf464d0364420de5935f32a9d912868912f9b",
+      "output_sha256": "c262fdcad5ae339d93316c6fcffc9c3de9493c05fc889ef9ce5fd258d2d37e15"
+    },
+    "profiles/mhp3rd/host/gpu/vulkan_renderer.cpp": {
+      "input_sha256": "c6a24c01087d2d3427f3d18d36796beeb665eda5c38b56f678d4fb83ccc1c4f4",
+      "output_sha256": "e109fe86e5211a9ef25da10f61848b5ababcf3893f655b39d830993f69b41cfa"
+    },
+    "profiles/mhp3rd/host/gpu/vulkan_renderer.hpp": {
+      "input_sha256": "da8d09b0d501f8f5436b9da4d3f64c4e6ae395c816a49949bd0ff37f7a485382",
+      "output_sha256": "3b1ce9d64bfc4adac1c2b97905fc2ee88f2f2c1f1e13248cd71b6ec44e447cec"
+    },
+    "profiles/mhp3rd/host/hle/hle_adhoc.cpp": {
+      "input_sha256": "d3af1833a5b9a4deb56077328d89027052308ff9aebe9fa857fa942d56a4ee95",
+      "output_sha256": "81c4b2dfb9977cfa58cc579188e17469a5f65fa6548716187e2233c85aaa342d"
+    },
+    "profiles/mhp3rd/host/hle/hle_atrac.cpp": {
+      "input_sha256": "614a1a54ed9bc0bc6b14a88b773600251d56f62679546a3f8fa801e735d5ef72",
+      "output_sha256": "a701010351cdbcca357ccce88f8af9b549fafc805c1cbcaf1d2c02e2cab58e64"
+    },
+    "profiles/mhp3rd/host/hle/hle_common.cpp": {
+      "input_sha256": "5ee1f482fb506119b3cd883aeae5bc86f4b776e5857a1477354e862521f62d4e",
+      "output_sha256": "b94954e377f2ad9d47c499c5c534798042136461a70f13da0a1d38102222007f"
+    },
+    "profiles/mhp3rd/host/hle/hle_common.hpp": {
+      "input_sha256": "54c2a605caaff50e84fd9eee4f70d3344739fb80fcb702ead970bd477240b76c",
+      "output_sha256": "44b6f49473066ba94701eafec9243dd3da6944afa19c3519c6b87b8b2889fb13"
+    },
+    "profiles/mhp3rd/host/hle/hle_font.cpp": {
+      "input_sha256": "b17aa5d3c44bf842e57aaebb5630c38c97981d1828229487c22bc53586781a10",
+      "output_sha256": "7dd31113ad3e49d69634a0fc07a4e0ca640ab56583386951b808010c8cea7557"
+    },
+    "profiles/mhp3rd/host/hle/hle_io.cpp": {
+      "input_sha256": "ab1d31755cef061be14d2fd97aaab0167756073bc1060aea45dc6d213e86ba36",
+      "output_sha256": "c4e2b093e7f66fa7355299013211e00719ea0ba0404bf3150a5776b0e8d3953e"
+    },
+    "profiles/mhp3rd/host/hle/hle_media.cpp": {
+      "input_sha256": "68c79c728820987e1b4c8aa8da9aa260cba18b8482a8c08e82f1fac22e43f637",
+      "output_sha256": "e99d144c6f0a06b1a31806ff4a359b5ece5f38a4171275da2f1a5ec5d38531d8"
+    },
+    "profiles/mhp3rd/host/hle/hle_mpeg.cpp": {
+      "input_sha256": "ae7d73d441fcafb1d97eafd3f7072737961d7bc73acb904dd6cb09ce9e9b2a43",
+      "output_sha256": "a545503563d96f02c3a00c2a1de3f089ec53be1d88f82667315f52f2717dd4e5"
+    },
+    "profiles/mhp3rd/host/hle/hle_savedata.cpp": {
+      "input_sha256": "0b5d4eec856f7ed076ee7463ebd8f1b7c9ae943fae90dfcf6f62f4d27eff3024",
+      "output_sha256": "874300821b4487c5c556040bdffa78749f7d996dd01f1c8ac52894039c2adc5c"
+    },
+    "profiles/mhp3rd/host/hle/hle_sysmem.cpp": {
+      "input_sha256": "f7eef82aac087536e8a16e3062e5b565d1f86f2f261ac6e3147e2074875e87f5",
+      "output_sha256": "7326d448831fca748754413d32259cf3ddf526b3f5b67f3ae8ef07642ecfe787"
+    },
+    "profiles/mhp3rd/host/hle/hle_system.cpp": {
+      "input_sha256": "a9beaaeb16940885cfabef88a26f1cd9d38e8a0dc736a270ed3e2e7d98cfbf55",
+      "output_sha256": "eb38c54c18b4b533a30d06c3ab1f408cf895667928ab0e18b0e821b78e473dd3"
+    },
+    "profiles/mhp3rd/host/hle/hle_threadman.cpp": {
+      "input_sha256": "d5bf25125fe5f437a504a1a8ae350016566675de4b79bc5485308853b8fda080",
+      "output_sha256": "7a8b815dcc7cefe5ccdf896fc85d2c40377a32dcc5d2c1b329df945dea412d90"
+    },
+    "profiles/mhp3rd/host/hle/hle_utility.cpp": {
+      "input_sha256": "e5148774b2813b1ce01c05e77eb52aa934e0de4a763baced05badabea0d96cee",
+      "output_sha256": "f694daca03478f27b2d7b57cf7434ab65189c5cc7dd9648331b91f290afb122a"
+    },
+    "profiles/mhp3rd/host/hle/utility_dialog.hpp": {
+      "input_sha256": "6059ce6b20ed54c4599241ec2ccfafddaf15b28ba05193b7be81d70475f13862",
+      "output_sha256": "e5ddad3a9b5af222bf4d7140c482fc4daea06b6715afe7ed98e3412d449ee097"
+    },
+    "profiles/mhp3rd/host/input/bindings.cpp": {
+      "input_sha256": "a4239471578b0f06f1716908ccd45e7396670375b80d5909fff5459391e2b2cb",
+      "output_sha256": "79c8c549ab811198c1c389ceff07a30bd4b86d9271c0d9fc3dd8f2b51b6b6728"
+    },
+    "profiles/mhp3rd/host/input/bindings.hpp": {
+      "input_sha256": "47b312648e9cdb4b90b23f6eaab1633ab7ee55294ff082ee87613334f290f6bc",
+      "output_sha256": "dd83dce51deb6a9bc4e2b093a1b0d8fc5ad9b190bf176c6d8c6e0f1d8e6a15a5"
+    },
+    "profiles/mhp3rd/host/input/chords.cpp": {
+      "input_sha256": "c6b11e038d37592e99c3ea704b119e229f929bb116b14ed812711894d11b15c9",
+      "output_sha256": "0a89cd107feee1d6d6e973b8513007c5d941ef7e61081846a15f89647b17c29e"
+    },
+    "profiles/mhp3rd/host/input/chords.hpp": {
+      "input_sha256": "58e305adb3f881179ca67811b1573bc97ffa4d7fc8a91b6a7b49766cb2174964",
+      "output_sha256": "7535e186c8e2536c8a4fdbf3a9476cbd5bd9e58e853cfb66c6bdf64738da2379"
+    },
+    "profiles/mhp3rd/host/input/gamepad_devices.cpp": {
+      "input_sha256": "b8c4ad58ea3da32ae1ffe88d593ad3960460f659cc99d96624c49bde9d536570",
+      "output_sha256": "262c5e5ee79283b22592c2ae731de3c991bb32a56cd306a8e9ed62e8313107a3"
+    },
+    "profiles/mhp3rd/host/input/gamepad_devices.hpp": {
+      "input_sha256": "6a81c9db31625b65cd15aaa1636013842234f03bf457dc2276e62f5381ef997e",
+      "output_sha256": "55698c0a353e76cfea139c9beef89b0a2aff2d6d1acfd78a50065daced6f8fb7"
+    },
+    "profiles/mhp3rd/host/input/gamepad_mapping.cpp": {
+      "input_sha256": "12e2c211d5bdc077fe660689e40ae1ff88c595725292e2ce58c12fcd344c99c0",
+      "output_sha256": "02500170daf743c17ae042eae0ba15f6528fa6f19600ee45df22d08060b6b878"
+    },
+    "profiles/mhp3rd/host/input/gamepad_mapping.hpp": {
+      "input_sha256": "013ae16b6083d1765a02f4a7d78ce5fae1b5ce60eaa928704269c030b3b2f9bb",
+      "output_sha256": "faec47a83bcdde52c2b0e6a705d57d90be9185e7deae19e7f2dbc62182822df6"
+    },
+    "profiles/mhp3rd/host/input/presets.cpp": {
+      "input_sha256": "a910356d905083c891dfa72215364d225cde4d92f78ea3c1bb9404100af0cee2",
+      "output_sha256": "d27bc9db90e9cc56cf6a74f8753f39cd54d660c828cd6c27dbf6c6c103212ec1"
+    },
+    "profiles/mhp3rd/host/input/presets.hpp": {
+      "input_sha256": "3b2ad6629675b42f550757ad6756045dfe608136304f19bb24bd1ac9f54d2a53",
+      "output_sha256": "ce0227cfe5944c19e7d2d3d69e8b16c3e5bafaba40d414a51f5e95349e6c5452"
+    },
+    "profiles/mhp3rd/host/input/touch_action.cpp": {
+      "input_sha256": "fd43df73a1539760e41f482147be799987d02e3ca133f5d1a418dac19962796f",
+      "output_sha256": "1715e2ab91107c2b600a0822eed1425ae0d0922dae253f5d5b20cbb5b9159c6f"
+    },
+    "profiles/mhp3rd/host/input/touch_action.hpp": {
+      "input_sha256": "2e3cf0a350fdaa0c0b01fbe7382c8ba67a1b43bd631736fcb8d91a154d359fb5",
+      "output_sha256": "4730113974a16793974607fe228dd731fa6ef630160902c6e2d47eb460ea8092"
+    },
+    "profiles/mhp3rd/host/input/touch_controls.cpp": {
+      "input_sha256": "9081382089b801570cd0336106caa7c9b42d827375d1f27d913941c2c6a428d8",
+      "output_sha256": "02096e87b1f848416cde15f154b22769cc1bb7d4e0c9e7b4edcab7e0fe22dc02"
+    },
+    "profiles/mhp3rd/host/input/touch_controls.hpp": {
+      "input_sha256": "5605f8b08e6a19205ff4c4e3af62022b1eaa35fb5e115ae96b5a76c7e0487cc6",
+      "output_sha256": "5e5553b006fc65dd12749bfb0f1e2ad9885a5560e7b7890d143d83012380af48"
+    },
+    "profiles/mhp3rd/host/input/touch_psp.hpp": {
+      "input_sha256": "3e0246742c112d3bec2ebb3fa66d688611092ccd023dde530241893c46d40dea",
+      "output_sha256": "c054da42a966c24c39bc067f090c06fc98f510bb60b579d729408b869eed97f6"
+    },
+    "profiles/mhp3rd/host/install/executable_preparation.cpp": {
+      "input_sha256": "8b52f952f0316c62f15b2ef32cae83570ee65ddec2d0ed2fe7157c0be0201a21",
+      "output_sha256": "36ac7ca790bd7e774a507e54e663f459fe3a51148ab42a48664aaa87539c5063"
+    },
+    "profiles/mhp3rd/host/install/executable_preparation.hpp": {
+      "input_sha256": "12a68fbbad5261284c0293c7e649c4ffbc078fb59d96a4668ff7e453af1575df",
+      "output_sha256": "dfd8937446ce6bb32633ec411f59f49850389a131bc32033de0f7a4cac0455f2"
+    },
+    "profiles/mhp3rd/host/install/front_end.cpp": {
+      "input_sha256": "136994f25cf9b496b35b7a369b59fd6c8a6964a1e9a68166c02c799a75ffc327",
+      "output_sha256": "76d383022ddece87c479f9a836fd4facc238c1ed4a806fa75f04cb8cc3d5ac29"
+    },
+    "profiles/mhp3rd/host/install/game_identity.hpp": {
+      "input_sha256": "d1767a6f4fc0efd38bfe6f8200453a1e020382f6e20c8078d18a391decb87a64",
+      "output_sha256": "a794e470adceb24508a0728096440f2af752c721b04d5e0cb8fd53b66f0eee6c"
+    },
+    "profiles/mhp3rd/host/install/installer.cpp": {
+      "input_sha256": "bb6b63647f86c0a89d777541cdc039bbd009e738bf6e83dd8544fe88cbc1a530",
+      "output_sha256": "84583f2e7f182217ea3d6bec179263e041972bff7f0a9f4e23a43ba23d34f626"
+    },
+    "profiles/mhp3rd/host/install/installer.hpp": {
+      "input_sha256": "3814791cb2e71cc17cad20a14a879316c59876a636e4361e47491356515e83e1",
+      "output_sha256": "242c9eaecb8db310e20606cf2852b156ae0da24aca3c031a58a2ee34059940a4"
+    },
+    "profiles/mhp3rd/host/install/installer_dialogs.cpp": {
+      "input_sha256": "be4b2a96a678a8b758313f82ac0edf7733553ab88fef041f69b8e188cfe0400c",
+      "output_sha256": "5598e39d35feb73f55d5d10864bc5ae60f55635fa3a1f903a4f4d9b27449b904"
+    },
+    "profiles/mhp3rd/host/install/user_data.cpp": {
+      "input_sha256": "9a4ba23a036a7070e83d437a01648cb103650fe50ad257ec4f7456bc933be891",
+      "output_sha256": "1274f4f0d6c09c3cc68483462e1623055964c20076332ff70d4784bfd0b47d6a"
+    },
+    "profiles/mhp3rd/host/install/user_data.hpp": {
+      "input_sha256": "b7b6b74716e13e2dd092e817a67c7cc934bf123b2f92caac911c19a0ca59017f",
+      "output_sha256": "70c64d616e3b636c07913fde8d4364798e6eaa4f9457aefa0871397d7f083db7"
+    },
+    "profiles/mhp3rd/host/kernel/fast_forward.cpp": {
+      "input_sha256": "45a4f4150e7ac958209fb9c372d1d8adc6a1275c660eb14a99771a69872fda96",
+      "output_sha256": "5dbf2a93f3ec585492106fc93b5e532b9e60482dd029b868844300d389f3d5cd"
+    },
+    "profiles/mhp3rd/host/kernel/fast_forward.hpp": {
+      "input_sha256": "a6acbe454640d0d95be20306c623ab29163f252ff52db9163153c1c89d1df6da",
+      "output_sha256": "435cf258670db852263a96161a561f5a4b5b70b9e03deb9b5f1a48e47166d097"
+    },
+    "profiles/mhp3rd/host/kernel/fast_forward_switch.cpp": {
+      "input_sha256": "749b2c481c808bffde7a6c6fed320c08aaf2f2c117f73aaa96e09e1c83ddfeb8",
+      "output_sha256": "35d4785b3be972daf85e567573e4ebb7e1bc39496259a95d6a676dabc4d3724c"
+    },
+    "profiles/mhp3rd/host/kernel/fast_loading.cpp": {
+      "input_sha256": "5eba6970a3d46cb20f7281b667780b7b3c97bc5966a8816c39e4d95ee972c448",
+      "output_sha256": "5a35b45f45f4743f5e4cd414b3a81569450a2ce0ab4eba8a6f7ae16b2ff28013"
+    },
+    "profiles/mhp3rd/host/kernel/fast_loading.hpp": {
+      "input_sha256": "fdee123b3ba75a7831029836f6408729622a76d19f6034b60fdf2d9366fe60ac",
+      "output_sha256": "cce6bd70d61c8b037428c625fe370b7572e66db7a922b6a4c978fe7dc7df13e8"
+    },
+    "profiles/mhp3rd/host/kernel/iso_image.cpp": {
+      "input_sha256": "5ca18b8468e56e4f4a666521955f9b1626b2293cb513ed8ba828386f040488a3",
+      "output_sha256": "4d8bfa6865b7757fb3830ee93dfaf4d23f832dd4232f7b019c4c8229d4d2640b"
+    },
+    "profiles/mhp3rd/host/kernel/iso_image.hpp": {
+      "input_sha256": "c78d4212d92dd282b2eb6d7006c1bd1566be901053c22e26e7f420bf86247a18",
+      "output_sha256": "2869a5d92e874c82038b013d865832bf0b114b13606dafda294d49ef0b4c0cb5"
+    },
+    "profiles/mhp3rd/host/kernel/kernel.cpp": {
+      "input_sha256": "d47ec6c5575d9b48bf20293d38052098a396b6af0f122ffc3725eedd0ee8083c",
+      "output_sha256": "0eb3cad9f705292734edf4170d639e6e8595f532406113ae57a0165671a3eb45"
+    },
+    "profiles/mhp3rd/host/kernel/kernel.hpp": {
+      "input_sha256": "187702a697a046ef9d10e3ffd7b31fcde0a22e49ce2790f7624e0f23000a2a8b",
+      "output_sha256": "0f3ea75830a97c90441f71b75f5581390e8d3bead01893b269f97dfeeb1eecf9"
+    },
+    "profiles/mhp3rd/host/kernel/load_detector.cpp": {
+      "input_sha256": "bff73898fd3ce97cc302d322f2750011b275726c536c904000d3582869a98e0c",
+      "output_sha256": "745911a5bc61b544075e81cdd7e10ec88d5447e1c0176385e26726525d927e85"
+    },
+    "profiles/mhp3rd/host/kernel/load_trace.cpp": {
+      "input_sha256": "28dd167cd033965ac0aed776c210cefd9aae4be910a38a5213f8b68bc273431e",
+      "output_sha256": "66dadbb3b687889629827765c791395a53c163be6689f6dac9b2cd834e7d9f12"
+    },
+    "profiles/mhp3rd/host/kernel/load_trace.hpp": {
+      "input_sha256": "f449852521dc7bb327054ff89edeebcf7125bad24f29132be8bb510eb9f43a71",
+      "output_sha256": "19a17dfc3577282b9f1722068dae68782c23ea2c841993e4e0103ca0cc1f079e"
+    },
+    "profiles/mhp3rd/host/main.cpp": {
+      "input_sha256": "c8561868485d9daf16e31481d5ad0acb55f74dd0c65d971e915d0ed2527f20f9",
+      "output_sha256": "7379e078c2a343e4531b9b846f5198dbff1f86e7d5c2107fb2dacab8e2db8fb3"
+    },
+    "profiles/mhp3rd/host/mhp3rd_profile.cpp": {
+      "input_sha256": "266b15a8a8d4600baf2a86fafdb646c75bb4eded5c562e93e6fef6ae67298437",
+      "output_sha256": "0b10d6e409b91e7033aae36ed7f3877ff2d73a0f306068407d9d7b09904dfa18"
+    },
+    "profiles/mhp3rd/host/mhp3rd_profile.hpp": {
+      "input_sha256": "b66495d280977fe9264cb9976e2711a540ed4562a8f3f7dd43d4bfbd726fa8d4",
+      "output_sha256": "690a4920e7effb254d74c8500be469fa837dbae862086d227e062273f3185dc2"
+    },
+    "profiles/mhp3rd/host/mods/file_overlay.cpp": {
+      "input_sha256": "b9a772c21b2ef2dc2388d23cd0b34bfe7f3df6c2aac5972272cc5fbd6330ba37",
+      "output_sha256": "b704abfdee45e21007557d5be69cadb654a1ca3a8c74830ee56f2f7bff1d0f9b"
+    },
+    "profiles/mhp3rd/host/mods/file_overlay.hpp": {
+      "input_sha256": "d38ba77a1a6195584f18c161193cca196931591932515611d8cd630c34549e67",
+      "output_sha256": "b03026232ccfa023fda1d6046f56b863c0d110315983adc758cb189d48f8a75f"
+    },
+    "profiles/mhp3rd/host/mods/mhp3rd_data_bin.cpp": {
+      "input_sha256": "cf480e44d927e1312ca1a81f80bdd12560f496af3d0711d98ca44ae922380032",
+      "output_sha256": "99ad676de06906c50d7df3ac1a247dff85bdb7a7ea1b013140cab0804af3ea0b"
+    },
+    "profiles/mhp3rd/host/mods/mhp3rd_data_bin.hpp": {
+      "input_sha256": "249c6786ebfedb259e0f597623f4d89b19aa0747aa97113fcf8f1a94fa21e225",
+      "output_sha256": "2b3c4ad40036f661531a5375efe7abde2a467d7746561b518c4fb91632acf3f8"
+    },
+    "profiles/mhp3rd/host/mods/mhp3rd_mod_format.cpp": {
+      "input_sha256": "46cd56f6495ca2956ac86a35958180e425fb02572d4763a1cd398fb286ca0315",
+      "output_sha256": "d170b34860422e3bd3861bc8499b16bf7cd0227a1d5075a742acfe0c6406a3fa"
+    },
+    "profiles/mhp3rd/host/mods/mhp3rd_mod_format.hpp": {
+      "input_sha256": "f50ee9a64ad6c89e7db5161d1a877aceae7a7ef729908c2d755596b8e145e967",
+      "output_sha256": "e49b2906055a9395bd3e24de826a8674faed7f933c59b91b51929369d8e6d5ad"
+    },
+    "profiles/mhp3rd/host/mods/mhp3rd_mods.cpp": {
+      "input_sha256": "916cb8ba1eb89eca78ba2a2202fa55460d879956b4f12cc817a71739ec5e34c2",
+      "output_sha256": "ed77fa00bfb12e88500f73cba0d1d77b7c6b04cdc6d717e6474de61c38855d5c"
+    },
+    "profiles/mhp3rd/host/mods/mhp3rd_mods.hpp": {
+      "input_sha256": "f9167beb23f644a3eea5f4fc88b3e88343a792a921812510760a6cf23fa83c89",
+      "output_sha256": "a19889b817d5c9c5c91909870daae0da136a8930cb4abc518f12d58a162e8e1e"
+    },
+    "profiles/mhp3rd/host/mods/mod_import.cpp": {
+      "input_sha256": "6eff79e44f42e7aa0d60366d9e77cb60b892b84ae1fce59773b205a82cc15855",
+      "output_sha256": "0896d9df4acf6506cd6687a8d4e47acec680898788de8d87618c309a3d479213"
+    },
+    "profiles/mhp3rd/host/mods/mod_import.hpp": {
+      "input_sha256": "009d669ae59dc6cfd85c86b1a6980f7f5b9e7d6e7fd8ef652a9bc290cd3e6815",
+      "output_sha256": "732cd0fdaefae9a5e5ea3975d60a0de849f1816d12d10dee3969e8564f994201"
+    },
+    "profiles/mhp3rd/host/mods/mod_ini.cpp": {
+      "input_sha256": "7a6de32b26eb30d8e16fd4d7416af9b1a202baeb90304c95e82776e9a055207f",
+      "output_sha256": "83204c0de946617518d2f70054738fe3b6f4124e4915b21663c75605793e089f"
+    },
+    "profiles/mhp3rd/host/mods/mod_ini.hpp": {
+      "input_sha256": "5403f0bacaf773be30256c7a923df59233b5a80544bf32fe365ebd7582e69507",
+      "output_sha256": "efdf13565ed61eeda57c4dc0587dd957d1a939c708221e1bafaee9c0c0f1d0cb"
+    },
+    "profiles/mhp3rd/host/mods/mod_library.cpp": {
+      "input_sha256": "4259a523f71f6368a1f4a52e2054006e8e3725c21d02df132f72dbb29b0b6170",
+      "output_sha256": "2f940d3bb64d73e99de27a83c4a9a51c553cdf566d5301e75a4033edd5a2b320"
+    },
+    "profiles/mhp3rd/host/mods/mod_library.hpp": {
+      "input_sha256": "6d65f51ee0d563b5fc56ad62b58ca30f3f9965ce1af2b4fb551d3059a2002c5e",
+      "output_sha256": "63a1e5048c2bae2407f4ae4c61120c60c06522e4f0e5416b897717f8586ef04a"
+    },
+    "profiles/mhp3rd/host/mods/mod_session.cpp": {
+      "input_sha256": "316ae2f512ce8a31f86cbf78a1a782679438fba5e69ec5eef46d6fea281b7940",
+      "output_sha256": "c5cd9591ceb3439da7e8dc031c6cfd1ddcfe88ed0937e28d4fec658b17743e3e"
+    },
+    "profiles/mhp3rd/host/mods/mod_session.hpp": {
+      "input_sha256": "b68c16bbf1dbe1f2ca72c13e0822c91690d9f02f860540716ef251c38484ae07",
+      "output_sha256": "ac135ca055cec672e19ffec1ebeeda547dc02cf9e5a6813062984515538ec554"
+    },
+    "profiles/mhp3rd/host/movie/avc_decoder.cpp": {
+      "input_sha256": "7267d46cc64b15a301692ccc8e7a50677450a72a6ed3535c4a382811fb3ce6c9",
+      "output_sha256": "d9e59d38002fb236d96780050ef3128a8d7f6c9b0b18163a0580c4bc35149727"
+    },
+    "profiles/mhp3rd/host/movie/avc_decoder.hpp": {
+      "input_sha256": "728b6dd0b014297ab704ce95c58c1d68fd5c989e8a0710e3c023cd803b0e53a0",
+      "output_sha256": "cf4d98576511983619a21314487310e440c6724c84f85b09a5c5d08577341247"
+    },
+    "profiles/mhp3rd/host/movie/psmf_demuxer.cpp": {
+      "input_sha256": "1b1297122719ab0d4e5da60e18c82d8ec4f52b7f80655882a90c97e4185675fb",
+      "output_sha256": "2a392f1be2673eac2e4a4518c7ef0c9b5fb283a4b93fa118a3720c10668fd442"
+    },
+    "profiles/mhp3rd/host/movie/psmf_demuxer.hpp": {
+      "input_sha256": "6b127f44da9b4e799d77b6d91bb57d1cc9a0bba2f4ef2f2361e98980d139e47a",
+      "output_sha256": "5b3d3d44eff245e1757a2328b099caa605abfe2a6814c6dddaed8f8de67ff368"
+    },
+    "profiles/mhp3rd/host/overlay_module.hpp": {
+      "input_sha256": "21c0aefcac33c6f56faea5c9b80ff8b8e5ab775f2b4c73aa866108f3402cd94e",
+      "output_sha256": "5015e8eab28f2f390933e057736bdbfb50a04e76204a3deea3773360553c3f65"
+    },
+    "profiles/mhp3rd/host/overlays.cpp": {
+      "input_sha256": "dad12a3de88f514d4c42f2195976c498eae9d7a2baca7e8668dc8e29e9b86849",
+      "output_sha256": "e538759e38fad8ead73f2503158231aaf227e066dc8264db085e405d5045fe4e"
+    },
+    "profiles/mhp3rd/host/overlays.hpp": {
+      "input_sha256": "7f50afd28136a4be00965a0f854ea593ea66aa237047a9d264a34164e92e3a7f",
+      "output_sha256": "c465a68a38d3ebc8941dc3cb46c98e5303092841d60c5f9b2685d00d0022dcf0"
+    },
+    "profiles/mhp3rd/host/perf/frame_stats.cpp": {
+      "input_sha256": "47cfe9a51f06e3ba1e170ef0ee765d77135d888e9c4450943999574dbf2a635d",
+      "output_sha256": "acd35490444246c335203cc38e389365bba2b2133c728cf917724535e78c7882"
+    },
+    "profiles/mhp3rd/host/perf/frame_stats.hpp": {
+      "input_sha256": "af524105984a524dae6b3d6417ef1258cf79d740a36ebd2bc81fa81be302d66c",
+      "output_sha256": "28e5d22d9981a68d4f845b175cb72cc161062489c659ec3ec7d0cc039102d271"
+    },
+    "profiles/mhp3rd/host/perf/perf_overlay.cpp": {
+      "input_sha256": "124fbfc505d51ef38bb0bc6cc6c3aab7dcf42e8e5f0ed0b6c72f1e48909bccff",
+      "output_sha256": "ccb45d77d18296098ff960c415fe1f6d178acca1d3c63ff732048458f59d003a"
+    },
+    "profiles/mhp3rd/host/perf/perf_overlay.hpp": {
+      "input_sha256": "48d8fd2b2912a0231e0d8293bf0f9027a091235c0bae95d68845a6d4a058bc79",
+      "output_sha256": "f658a2958ecf8368cafe5d3675f5ddc2edbd5240cd09dcb482827f3d386ca853"
+    },
+    "profiles/mhp3rd/host/platform/android_app.cpp": {
+      "input_sha256": "196eaf7f589381d88a505dd3e6e993def101594027980c984e99879b538017e3",
+      "output_sha256": "2fbac88ac3097697300706b56b14192d3c174a753c6efec2c7837a5ea7899cff"
+    },
+    "profiles/mhp3rd/host/platform/android_display.cpp": {
+      "input_sha256": "6dee4dd6e8d9f95f97a208d342ca456a262c47cbfba2fdbbc12d1c60f3565bbd",
+      "output_sha256": "eae491e22717217af482ca90a367d7853d1cf6bb3f6e7d83aa86988af64d22f2"
+    },
+    "profiles/mhp3rd/host/platform/android_display.hpp": {
+      "input_sha256": "90e5ee597fbc6e1b5f91702c3fc588813a1065be286e1c415b2ec82107336843",
+      "output_sha256": "f9ebf9c1397cde5111eddb45bb9b4e1775aaaf558c31e5768447c909cc672864"
+    },
+    "profiles/mhp3rd/host/platform/android_documents.cpp": {
+      "input_sha256": "73e1266ae12c297ed3d0ed31dec7f4871856fa95419b766fac91be0eb6820145",
+      "output_sha256": "e3b876c54f0cdbdf6280df51173d2199f7cd0dfab3ef5e809a6d3aa5d3a60b15"
+    },
+    "profiles/mhp3rd/host/platform/android_documents.hpp": {
+      "input_sha256": "ed456c89390a6e945a44d2f1b98923ee963b84250a78003e6533a404fb9714e5",
+      "output_sha256": "91ade72c7e3384ec1c32108ebb72905371635d788c08a6d8913c4534ac5c3981"
+    },
+    "profiles/mhp3rd/host/platform/android_fatal.cpp": {
+      "input_sha256": "69a4d61d42b6925ec3f315422352539a544435f360f389e4d8e71969798acd19",
+      "output_sha256": "e2b03e038b5405a87cbbbb881663ff5a98240f43b59332cd568dab719963fcff"
+    },
+    "profiles/mhp3rd/host/platform/android_fatal.hpp": {
+      "input_sha256": "3432c8547e335c00dd83376448cdb4b5834bb50f20770251cde93e2e1fcd72ac",
+      "output_sha256": "def57a46c4bcc4e32cb86d417cb865cd6758e6e26228806d620d435081089065"
+    },
+    "profiles/mhp3rd/host/platform/android_jni.cpp": {
+      "input_sha256": "a6553840b102708a3bfee5140e6d7c7e6c6af12c41fefe9f960af83d188c472c",
+      "output_sha256": "d493e6c6e35ae547a50088a90bd2c5c736ec748662a750d7e00f3802a585b7e4"
+    },
+    "profiles/mhp3rd/host/platform/android_jni.hpp": {
+      "input_sha256": "37be29a64d74990724f832706414997bca88ccf277b1b4e35f4e0132510ea91d",
+      "output_sha256": "e122f33422f26f0c39bee4cd182d5bafdf1ad11f0fcdd770f9d6384caa98fc34"
+    },
+    "profiles/mhp3rd/host/platform/android_performance.cpp": {
+      "input_sha256": "fd4a0632ba16c41f1f0075d7dfba1ab92e9418d62bd8310beed48822a8d4c07a",
+      "output_sha256": "1c3e87b04aa0ba859288465932b257a0c14084674a69e50d8340afb6391fb535"
+    },
+    "profiles/mhp3rd/host/platform/android_performance.hpp": {
+      "input_sha256": "4210ef04605dcbd28b331ec84e3e1085ec2b9b1e061911427e415a7f3dac2bb8",
+      "output_sha256": "1e316f9db7a8180fc62ba714e106231f209e86589ca5202272249ee518870d03"
+    },
+    "profiles/mhp3rd/host/platform/utf8_path.cpp": {
+      "input_sha256": "874369b2dcecebe973c1a90e874440edf2b37765cc85cc1ef2cc6a52c9c403f4",
+      "output_sha256": "a07387ec3f137da52bf9913d62fea831dc4964dd40183a50668f828d4666fb19"
+    },
+    "profiles/mhp3rd/host/platform/utf8_path.hpp": {
+      "input_sha256": "986780c42734b3d8eb62fbef21948ab9cdc4a0eee5f5e6814fcc47db4bf3c2fe",
+      "output_sha256": "8cd7a1a163c4e45c4606c175ee20edec1ed49b7069535354ccdb73899f4c03bf"
+    },
+    "profiles/mhp3rd/host/save_data/aes128.cpp": {
+      "input_sha256": "e9f212bcc19d3f933439133a066a8492fe8f75a53ca08fb58198b0362557805c",
+      "output_sha256": "9fe96904117df68969afc2997381560501a7f15d8fe2e1e788498185f9d2f0a9"
+    },
+    "profiles/mhp3rd/host/save_data/aes128.hpp": {
+      "input_sha256": "8407c556519f751ad6d0db1e5c4340e8fa6ea69109c4a696f69f6711bf5d40c9",
+      "output_sha256": "18ed51105b8b65ec121c8a945ee3e2134699573974f95900c47f9b105f8308ec"
+    },
+    "profiles/mhp3rd/host/save_data/param_sfo.cpp": {
+      "input_sha256": "cd662e8b1f58c53ba59f5c3486a7946c4c8cac7ed2ccbc119de07359791a3016",
+      "output_sha256": "f210d07df8d9a7a2dd3b4161df2e7db4af0b5b3b51f049a7aa0b4cfa60276d89"
+    },
+    "profiles/mhp3rd/host/save_data/param_sfo.hpp": {
+      "input_sha256": "11f4cb40cf3025b602f050c85eebeb510021b8aff959f7b7c71ed9b5bbaf367f",
+      "output_sha256": "8c9802b307917a06b112fd7e2bec890475d67aa0859287afe4444dc3d94e5ec4"
+    },
+    "profiles/mhp3rd/host/save_data/save_transfer.cpp": {
+      "input_sha256": "176d65693e080aef0e601198881ee300237cc5bd40d2046f48dfc1ee89b54624",
+      "output_sha256": "d1f662713b55d1f1867c1b1e28d070f82da24cffdabd8547a2c8c91c960ab91f"
+    },
+    "profiles/mhp3rd/host/save_data/save_transfer.hpp": {
+      "input_sha256": "428d2d33a9ae69af0fa883cd01cbe9018db1c0aee1a909260ddc41c987a01f87",
+      "output_sha256": "1523c4eabea0a08fa22cc1fdd7bd3157eba0f1bdf9f8eb1815df939ba09d76c3"
+    },
+    "profiles/mhp3rd/host/save_data/savedata_crypto.cpp": {
+      "input_sha256": "48a3d9ed1e427e45ab5f53a55e7b93cb095ffda6a00dfc8b512ac68d1d3e469b",
+      "output_sha256": "a92a3e5283f2e6206dd49e65df00b221a4bccdd527a7b743d1248635d514b258"
+    },
+    "profiles/mhp3rd/host/save_data/savedata_crypto.hpp": {
+      "input_sha256": "32bf165b4ca6175cce324824847ec5dfcd14d759931b0b8174968498f923bef0",
+      "output_sha256": "daa8988e63b723f4edfd168ec7532dad5c6275f9b797718d25353e6f5290f325"
+    },
+    "profiles/mhp3rd/host/save_data/savedata_store.cpp": {
+      "input_sha256": "a6726f8862311cd59af2f4b939e612aa91598241b478e3d5503f658d21bbcec4",
+      "output_sha256": "091d336604d668ebd5e8d9f9a1ef46ed8d690b4f75f70b96befb31c6cfea0408"
+    },
+    "profiles/mhp3rd/host/save_data/savedata_store.hpp": {
+      "input_sha256": "231377bab9de407a4b05821c06599643cf2d0f33ffb8cf53610d5ed0955be5ee",
+      "output_sha256": "b4c915a76c103fa5d318e2caf0e9b3b63af0ccb1628812c49727eaf0597018dc"
+    },
+    "profiles/mhp3rd/host/settings/settings.cpp": {
+      "input_sha256": "c17a338abd5b44939a418bd5aeb8b55ff9ef603273ed48fb7a3f69fa092b067c",
+      "output_sha256": "76807c1b4751709297dd4b4c58c58fa38aead06c1ebd4f38430d06b69633d705"
+    },
+    "profiles/mhp3rd/host/settings/settings.hpp": {
+      "input_sha256": "5c4e07eff5e34d66d6b0ba4bdc2d611c83f969dc3a08a164fb9859376ab7bdfd",
+      "output_sha256": "4568145acb0f85433997fa90dcfbec13206b19aa8380509c949ab585372fb048"
+    },
+    "profiles/mhp3rd/host/text/language.cpp": {
+      "input_sha256": "11194122eb64c3f15378a01c732fa9b24076a5fd4bfae15c8b102650ca9f65de",
+      "output_sha256": "4d5707956fa7c3c36f3fd1e4a16e71642884bd620b13304e0c4a4ef72b55e1ff"
+    },
+    "profiles/mhp3rd/host/text/language.hpp": {
+      "input_sha256": "699ab28118647dd5b69b6e9ec717548915ace5b424a1701e03db1dd881904dcd",
+      "output_sha256": "d0cc5ef1ba8726af785187e020b4162915696380d69c8417359f0826d90e98c7"
+    },
+    "profiles/mhp3rd/host/text/read_buffer.hpp": {
+      "input_sha256": "f25b15d2a1a7c006d494eac64da793cdc4908c71b3a0175e1512b7f884efec16",
+      "output_sha256": "a51e07df7f192e7880c27f911823d9443933ccebf04994fc77701dd7157a02c4"
+    },
+    "profiles/mhp3rd/host/text/translation.cpp": {
+      "input_sha256": "967b756db99cd522acbc8fe76c38872c88fff6546e4496522866544c428e576a",
+      "output_sha256": "798ed4a5e10766e5828dd60da14b97135000e29314b2e9b3549da0646203d1ef"
+    },
+    "profiles/mhp3rd/host/text/translation.hpp": {
+      "input_sha256": "81129ba44d3e449c34ebeccd04d1c7b9e7f761cef8cd5a44a8bf2303a5d92363",
+      "output_sha256": "76e0e093468300ac990b4d153223dca15e1c4def2a3b1f39170bfaea73de8507"
+    },
+    "profiles/mhp3rd/host/ui/bindings_editor.cpp": {
+      "input_sha256": "691277f2dbf2bd8315138922ec8c897a8d4e3e3203b0b22fd4232305fe102bd1",
+      "output_sha256": "dfaecab492bd0c4588ef7aa9e95bee85b2550475656c16d72400292c423b68bb"
+    },
+    "profiles/mhp3rd/host/ui/bindings_editor.hpp": {
+      "input_sha256": "7fb2ed20a693de19bb1fb9914232ddacb48b2581e69aaf58bc2d79e968a5deb7",
+      "output_sha256": "4eaf009ff97c31fa5cf5047e893075a8f35715217ae7881a4a222f76ece61fe8"
+    },
+    "profiles/mhp3rd/host/ui/controllers_screen.cpp": {
+      "input_sha256": "3db0b0e1093252e2304186e94734a178f990b540354036b8efa399f7feef520c",
+      "output_sha256": "87783c0ebcb1012815519fc4173c43b08b517e1dcffc1f1e01f2583dbd656e5b"
+    },
+    "profiles/mhp3rd/host/ui/controllers_screen.hpp": {
+      "input_sha256": "a2a6930d53ee22474e9562f7f8f307a2f2796ef846caba9fa107373fc04f031d",
+      "output_sha256": "3db0d54143498aa0b02098ce712686364bbcaa79a1075442149d42469953e842"
+    },
+    "profiles/mhp3rd/host/ui/debug_screen.cpp": {
+      "input_sha256": "ead32400e641613508373c009af4ca2dd283049ac36fab4d9377ab22b5cd11b6",
+      "output_sha256": "49fdc3a449f3a363b276ec627c0ccbe3bd32fddbcb4ea71614a9b3037664aa79"
+    },
+    "profiles/mhp3rd/host/ui/debug_screen.hpp": {
+      "input_sha256": "f7d7b6f9c060309978755fc123429783fc87e33a67f5b05f8d52a584a5de2617",
+      "output_sha256": "1275d1a762baae8cc112194b5286978c9b138dbce5881b80e5fb77e221b4a2f6"
+    },
+    "profiles/mhp3rd/host/ui/file_browser.cpp": {
+      "input_sha256": "b5f58829a691d007d4cd789cc9c63811f3c8246a4151cb72e447c8784bbf226d",
+      "output_sha256": "adaee4ae22ce0827395f79be575b84112d4e8c0b9c5acf377d45618e65541611"
+    },
+    "profiles/mhp3rd/host/ui/file_browser.hpp": {
+      "input_sha256": "558b3d88559402e099c54d70f37f032d5a982c6034d0165f62d409d0e2e0e2f6",
+      "output_sha256": "592dfc9a62eed14a015051e76700480da6569cf03ac4abe0e23ca6efe715afa0"
+    },
+    "profiles/mhp3rd/host/ui/font_menu.cpp": {
+      "input_sha256": "6014188ef4fa4875d094ff3111ab29228e3e940f4cb8fd565f81b219edae24cf",
+      "output_sha256": "1b72306698bc476dd150836c7aa356e8b52fd0f12606bb0b965733304d238ad8"
+    },
+    "profiles/mhp3rd/host/ui/font_menu.hpp": {
+      "input_sha256": "ccd3d733fa1e877b85e312c6c7bdec3ffb9988e6b87a2c7383a7485709404294",
+      "output_sha256": "66965f36c9a9ccfb2e2708d2d66124a71ff9bc2836127fb20a2175cb57e753d9"
+    },
+    "profiles/mhp3rd/host/ui/input_script.cpp": {
+      "input_sha256": "01a6654adf030f4719980a635eea4a2079df1527717625278cccab22536b3712",
+      "output_sha256": "32a891b175ca18f6ade5129b506fc8271e5a508f0a9f2f6a86fbe65e62cffb87"
+    },
+    "profiles/mhp3rd/host/ui/input_script.hpp": {
+      "input_sha256": "68d61cf3e90826eaa3ca013eb65f166436a81b4777cd9cf83c45878ef97f5e94",
+      "output_sha256": "1857cc7954385cad3b001589629eb1d08bf3d20ab0ff254180485bb84b8172f6"
+    },
+    "profiles/mhp3rd/host/ui/layer.cpp": {
+      "input_sha256": "40fb1cddbe76f0a7db36bbb1675bee1cb5531fb3157e1e549f549c6802bd318f",
+      "output_sha256": "9352a91d67a67b15e03511af3cfb49d71157489a4375e6e71e48e5100fab9a71"
+    },
+    "profiles/mhp3rd/host/ui/layer.hpp": {
+      "input_sha256": "a8719843bc76635d5e76149c586555732b66d596b25f1a1b09f356d08d167e11",
+      "output_sha256": "41624a28913b983a5f0901179253905bc8f11800375469e4a977ae61f501ea6d"
+    },
+    "profiles/mhp3rd/host/ui/layered_armor_screen.cpp": {
+      "input_sha256": "58e7ed86a676b0b03a88d8514b48ca0757201bc5dcb56b1575c909565eaf1120",
+      "output_sha256": "e3c77a76fac0c574cd01ea1d64ed7824dc5a417e2e3d5dfa97655e03449acc48"
+    },
+    "profiles/mhp3rd/host/ui/layered_armor_screen.hpp": {
+      "input_sha256": "c154c41c563ca09adbb76ecfe0376247dcf7c2867af6100b1b5a51602573ef96",
+      "output_sha256": "1a0f23c25bcd9a00664075807da371f4ddc7eb36165a9db1712e86d76ea50101"
+    },
+    "profiles/mhp3rd/host/ui/menu.cpp": {
+      "input_sha256": "dffb954315a7aeb33ebd0c5cab6115808016eddd12f36ef9fa5baf883e48ba16",
+      "output_sha256": "2cf9e1de54902e71a313c09b0576bfb76b7bd4885e16b358c044922ecf3fd1e6"
+    },
+    "profiles/mhp3rd/host/ui/mods_screen.cpp": {
+      "input_sha256": "68b471a46bdc7dd8eeb89e235bc70e3b984a7f5089cf6ebbaf13b7eaf4f5d7a2",
+      "output_sha256": "1e1edad1b1f59eb36045f6e6a1ad96e6348913086597d66b66988d871a7d00f1"
+    },
+    "profiles/mhp3rd/host/ui/mods_screen.hpp": {
+      "input_sha256": "f81cd59c91e5f83e627bcf0327a5535404da18c0202fbc8162b7b3dd68f69b35",
+      "output_sha256": "1126b0a721a63a895527cf47148a7b8f53b7b3f1b9c0888f3be7d3998d0ead88"
+    },
+    "profiles/mhp3rd/host/ui/save_screen.cpp": {
+      "input_sha256": "4e5652ae510bdce28a3b39dc7bf391152b5f4d2cf4ea86851b5d7f44edee07b9",
+      "output_sha256": "e47c24a83a2443f33284bc6cc84ebf5fc5aa851c60640dcaf48db162ade015d4"
+    },
+    "profiles/mhp3rd/host/ui/save_screen.hpp": {
+      "input_sha256": "7bd52073bcfa239912026c071c36f1550ab167fa76c00c5a8b3607fc366a872d",
+      "output_sha256": "88ccd0e58ea2145d0002d9e3d83277e81d6eebaa10d0f7c266f6556f14cd846d"
+    },
+    "profiles/mhp3rd/host/ui/setup_screens.cpp": {
+      "input_sha256": "acf90cdee918b73bc12656ec9f7a84f277d11c3012eb665fb53cfe898fe92daf",
+      "output_sha256": "bd07bbfef4b1737130cae62c0475b20e135cdf7eaa7e93c5359fd63eae793a8d"
+    },
+    "profiles/mhp3rd/host/ui/text_input.cpp": {
+      "input_sha256": "57d18e276372ba0ea15f553a50591c1190726cd2bfaf13e35782877f4dfe0871",
+      "output_sha256": "5493f8a275eeee8d3c8fb7601a9196233be43298d6c872347f09cbbe8cf48130"
+    },
+    "profiles/mhp3rd/host/ui/text_input.hpp": {
+      "input_sha256": "71693fd504edd4dd4b91def660f1f15bcbd67882e4ac555b31cea5de932150c0",
+      "output_sha256": "bbceba275ec6e6b82f2983db43ab2a10fdef6dd0546c7e07ee65dbdacb42786b"
+    },
+    "profiles/mhp3rd/host/ui/texture_pack_screen.cpp": {
+      "input_sha256": "86d8930af9eaa5d4e510a7eac77ce270b26b15984fe1cdf9a28fd34519823b56",
+      "output_sha256": "eadf0d1085290db3425b35f78238c14cbf4d8580d647c1a988956a2797ef29da"
+    },
+    "profiles/mhp3rd/host/ui/texture_pack_screen.hpp": {
+      "input_sha256": "9be2bc5c0613963ed2c810a0c08c47e983d15f3917b76e693ae56a12024b7846",
+      "output_sha256": "8350b485fe6c11624caccf8b76883a6d17c419f698b9317203d716638ed1115e"
+    },
+    "profiles/mhp3rd/host/ui/touch_editor.cpp": {
+      "input_sha256": "52ea03ff2d35fed76e96f3865a8c3f13c61bdd72558ed23c817b41c824369a22",
+      "output_sha256": "b22a983951876b6b81b0fc415590e70e1ca6c3227381f379918b058b803b452d"
+    },
+    "profiles/mhp3rd/host/ui/touch_editor.hpp": {
+      "input_sha256": "43177edc1f48321d457195b078ca235bcabe3a2d8dac69ac525937bfaca6ca5d",
+      "output_sha256": "16ae694e494f881519fb2366a193277bc9e4ee4bf14cb94d7a01d5ad213708e5"
+    },
+    "profiles/mhp3rd/host/ui/touch_overlay.cpp": {
+      "input_sha256": "b481e6cbe7c73bee1abf7bab0c7aa5148660117f1b58045948d9d640e977da63",
+      "output_sha256": "74eed069749d3483f08c4c923ad2d98ae75fea575a521f40f81b2bfcec81cbae"
+    },
+    "profiles/mhp3rd/host/ui/touch_overlay.hpp": {
+      "input_sha256": "ffe6474d8dc66c959278ab6cd50ce3534c4189f89090b3c4a16746bcd838baf9",
+      "output_sha256": "dd5453a1a7263c8207d83869f50cb9bd9838fdb6bf539aa42ffb0632fa37fc31"
+    },
+    "profiles/mhp3rd/host/ui/translation_screen.cpp": {
+      "input_sha256": "f1489df441439517572b40b7c6f831fbcf74fea44c6e889fd1a17b8ff49cace4",
+      "output_sha256": "a2c89fd32c05c614696b8c9e0c5f0d4f0127a9caa5e55783b44cccceb4b96a7f"
+    },
+    "profiles/mhp3rd/host/ui/translation_screen.hpp": {
+      "input_sha256": "be45fd2586182b46dfe5f08a84e0564c357ffca14dafc5e7e2932124ee5faa85",
+      "output_sha256": "bbb9cfebb4701a30a9cb5c9df6d0852d174eb05687641917bb14029e73f995ee"
+    },
+    "profiles/mhp3rd/host/ui/ui.hpp": {
+      "input_sha256": "27119225faed9be3c83b3b94390dd043937c521624e58a2a7942980fc461960a",
+      "output_sha256": "15cd75fbd02e7db032565ce1594b6ee8673336a4964dcf9fd6f1deda3c15d1be"
+    },
+    "profiles/mhp3rd/host/ui/widgets.cpp": {
+      "input_sha256": "01192a8d07edb97d8d4391afa57850ba1cde1f9223f23b03045d719f1ada39a3",
+      "output_sha256": "11be90bee66ad9f03a6c80ffe53fef2865f550b80673307dcfc0519942fca652"
+    },
+    "profiles/mhp3rd/host/ui/widgets.hpp": {
+      "input_sha256": "99c2fec393a27f9045f8ee3a755ad89a350903780680ba5c66f65b93b5b34382",
+      "output_sha256": "2580436987684f75501d522cfd6b2049a19cf2549079019a4b732d833d76f1ea"
+    },
+    "profiles/mhp3rd/third_party/tiny_aes/aes.c": {
+      "input_sha256": "f7f78b44654efd3542b6886923dd05194286807ebcfeb078ea05d21fe901ee9e",
+      "output_sha256": "f7f78b44654efd3542b6886923dd05194286807ebcfeb078ea05d21fe901ee9e"
+    },
+    "profiles/mhp3rd/third_party/tiny_aes/aes.h": {
+      "input_sha256": "9f74a4de3bd11621ff6e8fb9b352b060f699e6c1c67f81a22d104aacad61a23b",
+      "output_sha256": "9f74a4de3bd11621ff6e8fb9b352b060f699e6c1c67f81a22d104aacad61a23b"
+    },
+    "src/elf32.cpp": {
+      "input_sha256": "6062ad5a0cbeb3a28050c379b99e723e5e962fc7a7992ccf65aa78e914c52cc5",
+      "output_sha256": "d5abe8851741a51cff7ff13ba488e5d3610c48d17b7b7658df6f298e24a80293"
+    },
+    "src/runtime.cpp": {
+      "input_sha256": "ca562584a44d4fe34456ac1c20870055b10a1a9f427dcca1b27059eb246c30bb",
+      "output_sha256": "8747ddcb9ef7087ddd95b19200fcefb944e50ffb4b004bcf473ff166ec8fbe39"
+    },
+    "src/sha256.cpp": {
+      "input_sha256": "a41248a3744b93762beff2922e7fa439ebb553b0a27f64e7f9c06f7e9bf2fcff",
+      "output_sha256": "ca8409172adac579720d87d3f904fb369062a91f36cf644f443ead21aa38943a"
+    }
+  },
+  "performance": true,
+  "r4_regression_client_sha256": "26ad3c62dbb95e53526e5aadb3f15fbd4b5ceb37f00616d79fd7bca463139d21",
+  "r5_regression_client_sha256": "1453af59acc70d8dff3c33f7b9619f4a9e46fd48fd193dace412a5ffa4427bc8",
+  "independent_peer_fixture_sha256": "f9d9128d6c253fed3e62174b1ea1ff773073e71636b4b39d9647ef49eb6a41eb",
+  "online": true,
+  "web_settings": true,
+  "baseline": "game-online-0.7.0-r6",
+  "online_entry_sha256": "28961b178de2c159f3759367747bc925c311181db5ea0874e42340b3622fe75c"
+}

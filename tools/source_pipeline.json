@@ -1,0 +1,30 @@
+{
+  "format": 2,
+  "purpose": "Source workflow capabilities and acceptance contract; actual build status is recorded privately per output.",
+  "build_identity": "mhp3rd-ps5-source-0.10.0",
+  "entry": "tools/prepare_install.sh",
+  "precompiled_baseline": false,
+  "stages": [
+    "read-only input/requirement audit",
+    "fetch exact public source revisions",
+    "prepare guest ELF and all 89 main units",
+    "build SDK and LLVM runtimes from source",
+    "build Mesa/RADV and codecs from source",
+    "project complete runtime and online/web adapters",
+    "native AOT, link, import/unwind audit and FSELF conversion",
+    "build existing final2 permission payload",
+    "assemble and hash-verify one private transfer folder"
+  ],
+  "projection_lock": "source_projection.lock.json",
+  "native_probe_evidence": "native_probe_evidence.json",
+  "native_overlay_strategy": "Preserve accepted interpreter fallback",
+  "manual_source_installation_acceptance": "HARDWARE_VERIFIED",
+  "private_results": "out/data/install-state/; PPSA99373/yakumo/assets/build.json",
+  "console_rule": "Console acceptance records identify the tested application and payload hashes.",
+  "console_acceptance": {
+    "reported_date": "2026-10-19",
+    "result": "User transferred the generated game to PS5 and reported that it worked very well.",
+    "application_sha256": "4e5d3dc3eb126a3c22c68771c26eb56b827ab943c7d7bb9caea33799adb31f21",
+    "payload_sha256": "7aa4a14e080654de030a6eb3987fe12b59982d6e13640f53025cf3a62efe9eec"
+  }
+}

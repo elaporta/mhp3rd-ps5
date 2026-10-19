@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>mhp3rd-ps5 · Settings</title>
+  <link rel="stylesheet" href="/menu.css">
+  <script src="/menu.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1 id="page-title">mhp3rd-ps5</h1>
+      <p id="creator">Created by elaporta</p>
+      <p id="restart-note">Saved changes apply after closing and restarting the game.</p>
+    </div>
+    <label id="language-label" class="language-picker" for="language">Language
+      <select id="language" aria-label="Language">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </label>
+  </header>
+  <div class="layout">
+    <nav id="sidebar" aria-label="Settings categories" role="tablist" aria-orientation="vertical"></nav>
+    <main>
+      <section id="online-status">
+        <h2 id="online-status-title">Current connection</h2>
+        <p id="connection">Checking status…</p>
+      </section>
+      <div id="fields"></div>
+    </main>
+  </div>
+  <footer>
+    <span id="dirty" role="status" aria-live="polite">No unsaved changes</span>
+    <div>
+      <button id="discard" type="button">Discard</button>
+      <button id="save" class="primary" type="button" disabled>Save changes</button>
+    </div>
+  </footer>
+</body>
+</html>

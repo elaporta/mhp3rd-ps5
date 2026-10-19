@@ -1,0 +1,175 @@
+{
+  "format": 1,
+  "repositories": {
+    "yakumo": {
+      "url": "https://github.com/TeamGDB/Yakumo.git",
+      "commit": "03e7ca2d5ebd1fe4e7958235f4041716e3637cb6",
+      "path": "upstream/Yakumo",
+      "license": "MIT"
+    },
+    "vulkan": {
+      "url": "https://github.com/mihawk-99/PS5_Vulkan.git",
+      "commit": "252bf912a745e3566a93b69b098bdc8ec4048837",
+      "path": "deps/PS5_Vulkan",
+      "license": "GPL-3.0-or-later; component notices apply"
+    },
+    "sdk": {
+      "url": "https://github.com/mihawk-99/PS5_PayloadSDK.git",
+      "commit": "b83202be73e930050e00de0f1b4d9ec46c0391bf",
+      "path": "deps/PS5_PayloadSDK",
+      "license": "component notices apply"
+    },
+    "mesa": {
+      "url": "https://github.com/mihawk-99/PS5_Mesa.git",
+      "commit": "47e9eb61ee7e1112194557e1e047178562827bc6",
+      "path": "deps/PS5_Mesa",
+      "license": "component notices apply"
+    }
+  },
+  "runtime_adapters": {
+    "game_emutls": {
+      "repository": "sdk",
+      "file": "libc/emutls.c",
+      "sha256": "86813748aa5668112a0a5891601f5ae36660294a749a013fef7c3bbbd805737c",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "adaptation": "One pthread cleanup grace round before freeing emulated TLS storage"
+    }
+  },
+  "libraries": {
+    "ffmpeg": {
+      "version": "7.1.5",
+      "url": "https://ffmpeg.org/releases/ffmpeg-7.1.5.tar.xz",
+      "sha256": "de668509caf9e35e3cd162473441fdb29538c6d96ed080292b3cf9e6fc5d558f",
+      "license": "LGPL-2.1-or-later",
+      "decoders": [
+        "h264",
+        "atrac3",
+        "atrac3p"
+      ]
+    },
+    "llvm_runtimes": {
+      "version": "18.1.8",
+      "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/llvm-project-18.1.8.src.tar.xz",
+      "sha256": "0b58557a6d32ceee97c8d533a59b9212d87e0fc4d2833924eb6c611247db2f2a",
+      "bytes": 132067260,
+      "license": "Apache-2.0 WITH LLVM-exception"
+    },
+    "zlib_host": {
+      "version": "1.3.2",
+      "url": "https://zlib.net/fossils/zlib-1.3.2.tar.gz",
+      "sha256": "bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16",
+      "license": "Zlib"
+    }
+  },
+  "references": {
+    "PortableKit": "33800c4060c53f3233e08f8ab2cc4590a0872063",
+    "ps5-payload-dev/sdk": "f5d40f02770e9b0001dd9e18056eca70b3da8b40",
+    "ShadowMountPlus": "98c524890176c7b474fcb03387bec88c4a559861",
+    "ShadowMountPlusRelease": "1.7-beta5fix1",
+    "ftpsrv": "70f7b8614d3f36f6ceda0a37d6189b675f9d3f29"
+  },
+  "assets": {
+    "game_font": {
+      "commit": "523d033d6cb47f4a80c58a35753646f5c3608a78",
+      "release": "Sans2.004",
+      "license": "SIL-OFL-1.1",
+      "files": {
+        "NotoSansCJKjp-Regular.otf": {
+          "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/523d033d6cb47f4a80c58a35753646f5c3608a78/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf",
+          "sha256": "68a3fc98800b2a27b371f2fb79991daf3633bd89309d4ffaa6946fd587f375b5",
+          "bytes": 16467736
+        },
+        "LICENSE": {
+          "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/523d033d6cb47f4a80c58a35753646f5c3608a78/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+          "bytes": 4301
+        }
+      }
+    },
+    "david_resource_maps": {
+      "commit": "1848e581208cea0c0c5854de89f356eeeefa5479",
+      "repository": "https://github.com/David-vz/MonsterHunterPortable3rdHDRemake",
+      "license": "Original author credits; private local use only; redistribution rights unresolved",
+      "files": {
+        "README.md": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/README.md",
+          "sha256": "9966039cd4ab065909a750edd207e53b878389e804aa1e7c4fe3ef84529c9337",
+          "bytes": 1826
+        },
+        "TEXTURES/NPJB40001/textures.ini": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/textures.ini",
+          "sha256": "790d93415840d58b6067d64ded4d77492a34dcd1f88a338ad86b03d6a5e9e84b",
+          "bytes": 80365
+        },
+        "TEXTURES/NPJB40001/MAP/map_Tundra_day.png": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/MAP/map_Tundra_day.png",
+          "sha256": "33152d5c7869d1e2d85b0c6fdb47907a5b026a8c76af5f2fbde57082691f63e4",
+          "bytes": 489876
+        },
+        "TEXTURES/NPJB40001/MAP/map_Tundra_night.png": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/MAP/map_Tundra_night.png",
+          "sha256": "33152d5c7869d1e2d85b0c6fdb47907a5b026a8c76af5f2fbde57082691f63e4",
+          "bytes": 489876
+        },
+        "TEXTURES/NPJB40001/MAP/map_Vocalno_day.png": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/MAP/map_Vocalno_day.png",
+          "sha256": "0da22682903cee8c661657d10881f20d998eb076db0563c4b04608441ef2f508",
+          "bytes": 632230
+        },
+        "TEXTURES/NPJB40001/MAP/map_deserted_island_day.png": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/MAP/map_deserted_island_day.png",
+          "sha256": "0bbb6c49427734739569b17708c95bc9c044fb7a1f35d990fbc9598aa5661b5e",
+          "bytes": 430178
+        },
+        "TEXTURES/NPJB40001/MAP/map_flooded_forest_day.png": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/MAP/map_flooded_forest_day.png",
+          "sha256": "6b170c55268b31a0a90bac3156d94c175535fb6c4eba036f812b815757ebe547",
+          "bytes": 452687
+        },
+        "TEXTURES/NPJB40001/MAP/map_misty_peaks_day.png": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/MAP/map_misty_peaks_day.png",
+          "sha256": "94328e55821bb8f4f27f1cf631c4f089938c44a85ac771a5497ff3ca2200fca0",
+          "bytes": 426186
+        },
+        "TEXTURES/NPJB40001/MAP/map_sandy_plains_day.png": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/MAP/map_sandy_plains_day.png",
+          "sha256": "7b67692a42e5426a6f212bcd322c27164516fb44c200608bf16a16a11be6dffb",
+          "bytes": 520903
+        },
+        "TEXTURES/NPJB40001/MAP/map_sandy_plains_night.png": {
+          "url": "https://raw.githubusercontent.com/David-vz/MonsterHunterPortable3rdHDRemake/1848e581208cea0c0c5854de89f356eeeefa5479/TEXTURES/NPJB40001/MAP/map_sandy_plains_night.png",
+          "sha256": "01f74007ed95b1cf498297ddbcf128fcffa2616ee6ca041f68ea21482e13def3",
+          "bytes": 526767
+        }
+      }
+    }
+  },
+  "host_sources": {
+    "meson": {
+      "version": "1.9.1",
+      "url": "https://files.pythonhosted.org/packages/48/d8/6c1dd1c740b7d5fd73a6ad67900a09e3dd6642013f58fa9e22ae6faaffc7/meson-1.9.1.tar.gz",
+      "sha256": "4e076606f2afff7881d195574bddcd8d89286f35a17b4977a216f535dc0c74ac",
+      "bytes": 5083044,
+      "filename": "meson-1.9.1.tar.gz"
+    },
+    "mako": {
+      "version": "1.3.10",
+      "url": "https://files.pythonhosted.org/packages/9e/38/bd5b78a920a64d708fe6bc8e0a2c075e1389d53bef8413725c63ba041535/mako-1.3.10.tar.gz",
+      "sha256": "99579a6f39583fa7e5630a28c3c1f440e4e97a414b80372649c0ce338da2ea28",
+      "bytes": 392474,
+      "filename": "mako-1.3.10.tar.gz"
+    },
+    "markupsafe": {
+      "version": "3.0.3",
+      "url": "https://files.pythonhosted.org/packages/7e/99/7690b6d4034fffd95959cbe0c02de8deb3098cc577c67bb6a24fe5d7caa7/markupsafe-3.0.3.tar.gz",
+      "sha256": "722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698",
+      "bytes": 80313,
+      "filename": "markupsafe-3.0.3.tar.gz"
+    }
+  },
+  "build_environment": {
+    "container_base": "ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac",
+    "platform": "linux/amd64",
+    "llvm_major": 18
+  }
+}

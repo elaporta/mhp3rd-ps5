@@ -18,7 +18,7 @@ from source_support import ROOT, DATA, private, save_json
 
 _OWNED = set()
 _CHECKED_DIRECTORIES = set()
-_TITLE_DIRECTORIES=('yakumo/config','yakumo/logs','yakumo/cache/radv','yakumo/cache/first-frame',
+_TITLE_DIRECTORIES=('yakumo/config','yakumo/mods','yakumo/logs','yakumo/cache/radv','yakumo/cache/first-frame',
                     'yakumo/saves/ms0/PSP/SAVEDATA','sce_sys')
 
 
@@ -111,6 +111,17 @@ def licenses(output, title):
             owned_copy(path,output/'LICENSES'/('Mesa-'+path.name))
 
 
+def application_parameters():
+    # The pinned VideoOut driver checks bit 0x40 before requesting 120 Hz.
+    # Its own support/configuration/vblank checks retain the normal mode on refusal.
+    return dict(titleId='PPSA99373',conceptId='99373',contentId='UP9000-PPSA99373_00-YAKUMOPROBE00001',
+                applicationCategoryType=0,applicationDrmType='free',contentBadgeType=1,contentVersion='00.120.001',
+                masterVersion='00.01',downloadDataSize=0,attribute=0,attribute2=0,attribute3=0x40,
+                requiredSystemSoftwareVersion='0x0000000000000000',sdkVersion='0x0000000000000000',
+                localizedParameters={'defaultLanguage':'en-US','en-US':{'titleName':'MHP3rd'}},
+                gameIntent={'permittedIntents':[{'intentType':'launchActivity'}]})
+
+
 def assemble(output, image, pack, inputs, source_identity):
     _OWNED.clear()
     _CHECKED_DIRECTORIES.clear()
@@ -132,13 +143,7 @@ def assemble(output, image, pack, inputs, source_identity):
         owned_copy(path,title/name)
     for relative in _TITLE_DIRECTORIES:
         private(title/relative).mkdir(parents=True,exist_ok=True)
-    param = dict(titleId='PPSA99373',conceptId='99373',contentId='UP9000-PPSA99373_00-YAKUMOPROBE00001',
-                 applicationCategoryType=0,applicationDrmType='free',contentBadgeType=1,contentVersion='00.100.001',
-                 masterVersion='00.01',downloadDataSize=0,attribute=0,attribute2=0,attribute3=0,
-                 requiredSystemSoftwareVersion='0x0000000000000000',sdkVersion='0x0000000000000000',
-                 localizedParameters={'defaultLanguage':'en-US','en-US':{'titleName':'MHP3rd'}},
-                 gameIntent={'permittedIntents':[{'intentType':'launchActivity'}]})
-    owned_bytes(title/'sce_sys/param.json',json_bytes(param))
+    owned_bytes(title/'sce_sys/param.json',json_bytes(application_parameters()))
     owned_bytes(title/'sce_sys/icon0.png',png())
     owned_bytes(title/'yakumo/title.id',b'PPSA99373\n')
     owned_copy(image,title/'yakumo/game/game.iso')
@@ -152,12 +157,16 @@ def assemble(output, image, pack, inputs, source_identity):
     texture = {'runtime_manifest_sha256':digest(pack/'runtime-manifest.json'),'root':'yakumo/textures/NPJB40001','png_count':sum(p.is_file() and p.suffix.lower()=='.png' for p in pack.rglob('*')),
                'source':'User-supplied author texture pack; prepared locally; not distributed'}
     owned_bytes(title/'yakumo/assets/required-texture-pack.json',json_bytes(texture))
-    metadata = dict(build='mhp3rd-ps5-source-0.10.0',title_id='PPSA99373',source_identity=source_identity,
+    metadata = dict(build='mhp3rd-ps5-source-0.12.0',revision='mods-r1',title_id='PPSA99373',source_identity=source_identity,
         source_only=True,precompiled_baseline=False,hardware_verified=False,manual_acceptance='TODO',
         inputs=inputs,dependencies=json.loads((ROOT/'dependencies.lock.json').read_text()),
-        defaults={'internal_scale':6,'presentation_fps':60,'hd_textures':True},
+        defaults={'internal_scale':6,'presentation_fps':60,'hd_textures':True,'output_resolution':'1080p'},
+        video_capabilities={'max_internal_scale':8,'presentation_fps':[30,45,60,120],
+                            'output_resolution':['1080p','1440p','2160p'],'simulation_fps':30,
+                            'high_refresh_attribute3':0x40,'effective_refresh_limited':True},
         features=['native_vulkan','compressed_audio','movies','native_controller','system_keyboard','hud_camera_hooks',
-                  'web_settings_L3_R3','adhoc_online','save_reload','overlay_interpreter_fallback'],
+                  'web_settings_L3_R3','local_mods_restart_only','adhoc_online','save_reload','overlay_interpreter_fallback'],
+        mods={'directory':'yakumo/mods','preferences':'yakumo/config/mods.ini','apply':'restart','new_mods_enabled':False},
         source_projection='All 233 host/runtime projections and entry match the maintained accepted-source lock',
         sdk_built_from_source=True,payload_source='title-permissions-0.1.3-final2',
         permission_payload_sha256=digest(payload),permission_success='Permissions applied ... Launch the game now.',

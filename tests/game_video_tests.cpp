@@ -11,6 +11,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 #include <source_location>
 #include <thread>
@@ -48,9 +49,15 @@ int main(int argc,char** argv) {
     }
     check(mhp3rd::gpu::VulkanRenderer::textures_root()==root/"yakumo/textures");
     check(yakumo::game_performance::capped_rate(120,59.94)==59.94);
-    check(yakumo::game_performance::capped_rate(90,120)==60);
+    check(yakumo::game_performance::capped_rate(120,119.88)==119.88);
+    check(yakumo::game_performance::capped_rate(120,144)==120);
+    check(yakumo::game_performance::capped_rate(120,0)==60);
+    check(yakumo::game_performance::capped_rate(60,119.88)==60);
     check(yakumo::game_performance::capped_rate(45,60)==45);
     check(yakumo::game_performance::capped_rate(60,0)==60);
+    check(yakumo::game_performance::capped_rate(120,std::numeric_limits<double>::quiet_NaN())==60);
+    check(yakumo::game_performance::capped_rate(120,std::numeric_limits<double>::infinity())==60);
+    check(yakumo::game_performance::capped_rate(-1,119.88)==30);
     if(mode=="audio-config") {
         using mhp3rd::settings::from_entries;
         const auto half=from_entries({{"audio.volume","50"},{"audio.mute","0"}});

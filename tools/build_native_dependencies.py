@@ -96,6 +96,27 @@ def radv_headers():
         shutil.copytree(source/directory,RADV/'include'/directory,dirs_exist_ok=True)
 
 
+def prepare_mesa_subproject_sources(source):
+    """Reuse pinned source downloads independently of disposable build exports."""
+    # The Mesa commit pins this source-only subproject (archive + Meson build definitions).
+    import configparser
+    parser = configparser.ConfigParser()
+    parser.read(source/'subprojects/zlib.wrap')
+    wrap = parser['wrap-file']
+    cache = source/'subprojects/packagecache'
+    for kind in ('source', 'patch'):
+        url = wrap[kind+'_url'].replace('http://zlib.net/', 'https://zlib.net/')
+        # Keep source downloads outside disposable Mesa build/export directories.
+        retained = download({'url':url, 'sha256':wrap[kind+'_hash'], 'filename':wrap[kind+'_filename']})
+        target = cache/wrap[kind+'_filename']
+        cache.mkdir(parents=True, exist_ok=True)
+        if target.exists():
+            if digest(target) != wrap[kind+'_hash']:
+                raise ValueError('Different Mesa source archive preserved: '+str(target))
+        else:
+            shutil.copyfile(retained, target)
+
+
 def radv():
     marker = PREFIX/'radv-complete.json'
     artifacts = [RADV/'lib/libvulkan_radeon.ps5.a', RADV/'include/vulkan/vulkan.h']
@@ -105,15 +126,7 @@ def radv():
     source = export_git('mesa', PREFIX/'mesa-source')
     radv_headers()
     meson, env = generators()
-    # The Mesa commit pins this source-only subproject (archive + Meson build definitions).
-    import configparser
-    parser = configparser.ConfigParser()
-    parser.read(source/'subprojects/zlib.wrap')
-    wrap = parser['wrap-file']
-    cache = source/'subprojects/packagecache'
-    for kind in ('source', 'patch'):
-        url = wrap[kind+'_url'].replace('http://zlib.net/', 'https://zlib.net/')
-        download({'url':url, 'sha256':wrap[kind+'_hash']}, cache/wrap[kind+'_filename'])
+    prepare_mesa_subproject_sources(source)
     clc = PREFIX/'mesa-clc'
     if not (clc/'build.ninja').exists():
         run([sys.executable, meson, 'setup', clc, source, '-Dbuildtype=release', '-Dmesa-clc=enabled', '-Dinstall-mesa-clc=true',

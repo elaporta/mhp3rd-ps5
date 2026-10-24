@@ -10,7 +10,9 @@ FORBIDDEN={'.iso','.cso','.elf','.prx','.bin','.a','.o','.obj','.so','.dylib','.
 # User-authorized PS5 screenshots for documentation, separate from game assets.
 SCREENSHOTS={'photos/'+name for name in (
     'ps5-forest.jpg','ps5-waterfall.jpg','ps5-forest-canopy.jpg','ps5-gathering-hall.jpg',
-    'ps5-online-party.jpg','ps5-riverside.jpg','ps5-online-status.jpg')}
+    'ps5-online-party.jpg','ps5-riverside.jpg','ps5-online-status.jpg',
+    'ps5-120fps-x8.jpg','ps5-web-menu-online.jpg','ps5-web-menu-video.jpg',
+    'ps5-web-menu-mods.jpg','ps5-guild-master-npc.jpg','ps5-buttons-nintendo-layout.jpg')}
 
 
 def audit():

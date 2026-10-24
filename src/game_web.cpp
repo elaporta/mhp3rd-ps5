@@ -2,7 +2,11 @@
 #include "game_web.hpp"
 #include "game_web_protocol.hpp"
 #include "game_settings.hpp"
+#include "game_mods.hpp"
 #include "game_files.hpp"
+#include "game_platform.hpp"
+#include "game_performance.hpp"
+#include "gpu/frame_pacing.hpp"
 #include "game_text_observer.hpp"
 #include "adhoc/client.hpp"
 #include "settings/settings.hpp"
@@ -84,9 +88,16 @@ std::string object(const menu::Entries& entries) {
 }
 std::string settings_json() {
     const auto disk = menu::read(), values = menu::values(disk);
-    const auto current = mhp3rd::settings::to_entries(mhp3rd::settings::current());
+    auto current = mhp3rd::settings::to_entries(mhp3rd::settings::current());
+    current["ps5.output_resolution"]=menu::output_resolution();
+    int width{},height{};game_platform::display_size(width,height);
+    const auto refresh=game_platform::display_hz();
+    const auto rate=mhp3rd::gpu::pacing::requested_rate(mhp3rd::settings::current().frame_rate,refresh);
     std::string out = "{\"ok\":true,\"revision\":"+quote(revision(disk))+",\"values\":"+object(values)+
-        ",\"current\":"+object(current)+",\"catalog\":[";
+        ",\"current\":"+object(current)+",\"display\":{\"available\":"+(width>=1920?"true":"false")+
+        ",\"width\":"+std::to_string(width)+",\"height\":"+std::to_string(height)+
+        ",\"refresh_hz\":"+std::to_string(refresh)+",\"presentation_limit\":"+
+        std::to_string(game_performance::capped_rate(rate,refresh))+"},\"catalog\":[";
     bool first = true;
     for (const auto& option : menu::catalog()) {
         if (!first) out += ','; first = false;
@@ -102,6 +113,13 @@ std::string settings_json() {
     return out + "]}";
 }
 std::string handle(const std::string& route, const std::string& body) {
+    if (route == "/api/mods") return game_mods::catalog();
+    if (route == "/api/mods/save") return game_mods::save(form(body));
+    if (route.rfind("/api/mods/preview?",0)==0) {
+        const auto query=form(route.substr(18));
+        if(query.size()!=1 || !query.count("id")) throw std::runtime_error("Invalid preview query");
+        return game_mods::preview(query.at("id"));
+    }
     if (route == "/api/settings") return settings_json();
     if (route == "/api/status") {
         const auto d = mhp3rd::adhoc::Client::get().diagnostics();
@@ -218,7 +236,8 @@ void serve(int fd) {
         if(!running || header_end==bytes.npos || bytes.size()!=header_end+length) return;
         if(route.rfind("/api/",0)==0) {
             if(headers["x-yakumo-token"]!=token) throw std::runtime_error("Invalid session");
-            const bool reading=route=="/api/settings" || route=="/api/status";
+            const bool image=route.rfind("/api/mods/preview?",0)==0;
+            const bool reading=route=="/api/settings" || route=="/api/status" || route=="/api/mods" || image;
             if(method!=(reading?"GET":"POST")) throw std::runtime_error("Invalid API method");
             if(!reading && headers["content-type"]!="application/x-www-form-urlencoded") throw std::runtime_error("Invalid content type");
             if(route=="/api/ping") { last_ping=millis(); payload="{\"ok\":true}"; }
@@ -230,6 +249,7 @@ void serve(int fd) {
                 editing_focus=found->second=="1"; payload="{\"ok\":true}";
             }
             else payload=owner_request(route,bytes.substr(header_end,length));
+            if(image && !payload.starts_with("{\"ok\":false")) type="image/png";
         } else {
             if(method!="GET" || length) throw std::runtime_error("Invalid asset method");
             const auto found=assets.find(route);
@@ -239,7 +259,7 @@ void serve(int fd) {
     } catch(const std::exception& error) { status=400; payload="{\"ok\":false,\"error\":"+quote(error.what())+"}"; }
     const std::string response="HTTP/1.1 "+std::to_string(status)+(status==200?" OK":status==404?" Not Found":" Bad Request")+
         "\r\nContent-Type: "+type+"\r\nContent-Length: "+std::to_string(payload.size())+
-        "\r\nConnection: close\r\nCache-Control: no-store\r\nX-Content-Type-Options: nosniff\r\nReferrer-Policy: no-referrer\r\nContent-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'\r\n\r\n"+payload;
+        "\r\nConnection: close\r\nCache-Control: no-store\r\nX-Content-Type-Options: nosniff\r\nReferrer-Policy: no-referrer\r\nContent-Security-Policy: default-src 'self'; img-src 'self' blob:; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'\r\n\r\n"+payload;
     std::size_t at=0;
     while(running && at<response.size() && Clock::now()<deadline) {
         const auto n=transmit(fd,response.data()+at,response.size()-at);

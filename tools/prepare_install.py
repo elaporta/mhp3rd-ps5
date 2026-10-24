@@ -24,7 +24,7 @@ def output_path(value, root=ROOT):
     reject_links(path)
     if path == data or not path.is_relative_to(data) or not path.resolve().is_relative_to(data.resolve()):
         raise ValueError('Output must be a child of ' + str(data))
-    reserved = {'native-source','game-boot','application-source-0.10.0','install-state','install-build',
+    reserved = {'archive','native-source','game-boot','application-source-0.10.0','application-source-0.11.0','application-source-0.12.0','install-state','install-build',
                 'dependencies','downloads','prepared-textures','build-logs','framework-host','executable-tool'}
     if path.relative_to(data).parts[0] in reserved:
         raise ValueError('Output overlaps a reserved build directory: '+str(path))

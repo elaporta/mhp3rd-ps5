@@ -4,14 +4,17 @@
 #include "game_audio.hpp"
 #include "game_pad.hpp"
 #include "game_observer.hpp"
+#include "game_display.hpp"
+#include "game_settings.hpp"
+#include "game_performance.hpp"
 #if YAKUMO_GAME_WEB
 #include "game_web.hpp"
-#include "game_settings.hpp"
 #endif
 #include "text_input_service.hpp"
 #include "integration_pad.hpp"
 #include "input/bindings.hpp"
 #include "settings/settings.hpp"
+#include "gpu/frame_pacing.hpp"
 #include <algorithm>
 #include <array>
 #include <atomic>
@@ -83,20 +86,39 @@ bool create_surface(VkInstance instance,VkSurfaceKHR& surface,std::string& error
     const auto display=displays.front().display;
     rc=vkGetDisplayModePropertiesKHR(gpu,display,&n,nullptr);if(rc||!n)return fail("enumerate modes",rc);
     std::vector<VkDisplayModePropertiesKHR> modes(n);rc=vkGetDisplayModePropertiesKHR(gpu,display,&n,modes.data());if(rc)return fail("display modes",rc);
-    std::size_t mode=0;for(std::size_t i=0;i<modes.size();++i)if(modes[i].parameters.visibleRegion.width==1920&&modes[i].parameters.visibleRegion.height==1080){mode=i;break;}
+    modes.resize(n);
+    const auto& output=game_settings::output_resolution();
+    const unsigned requested_height=output=="2160p"?2160:output=="1440p"?1440:1080;
+    const auto candidates=game_display::candidates(modes,requested_height);
     rc=vkGetPhysicalDeviceDisplayPlanePropertiesKHR(gpu,&n,nullptr);if(rc||!n)return fail("enumerate planes",rc);
     std::vector<VkDisplayPlanePropertiesKHR> planes(n);rc=vkGetPhysicalDeviceDisplayPlanePropertiesKHR(gpu,&n,planes.data());if(rc)return fail("planes",rc);
     std::uint32_t plane=UINT32_MAX;
     for(std::uint32_t i=0;i<planes.size();++i){std::uint32_t count=0;rc=vkGetDisplayPlaneSupportedDisplaysKHR(gpu,i,&count,nullptr);if(rc)return fail("plane displays",rc);std::vector<VkDisplayKHR> supported(count);rc=vkGetDisplayPlaneSupportedDisplaysKHR(gpu,i,&count,supported.data());if(rc)return fail("plane displays",rc);if(std::find(supported.begin(),supported.end(),display)!=supported.end()){plane=i;break;}}
     if(plane==UINT32_MAX){error="No compatible display plane";return false;}
-    VkDisplayPlaneCapabilitiesKHR caps{};rc=vkGetDisplayPlaneCapabilitiesKHR(gpu,modes[mode].displayMode,plane,&caps);if(rc)return fail("plane caps",rc);
-    if(!(caps.supportedAlpha&VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR)){error="Opaque display plane unavailable";return false;}
-    VkDisplaySurfaceCreateInfoKHR info{VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR};
-    info.displayMode=modes[mode].displayMode;info.planeIndex=plane;info.planeStackIndex=planes[plane].currentStackIndex;
-    info.transform=VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR;info.alphaMode=VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR;info.imageExtent=modes[mode].parameters.visibleRegion;
-    rc=vkCreateDisplayPlaneSurfaceKHR(instance,&info,nullptr,&surface);if(rc)return fail("create display surface",rc);
-    width=info.imageExtent.width;height=info.imageExtent.height;hz=modes[mode].parameters.refreshRate/1000.f;
-    std::cout<<"[game-display] "<<width<<"x"<<height<<" hz="<<hz<<" mode="<<mode<<" plane="<<plane<<"\n";
+    for(const auto mode:candidates) {
+        VkDisplayPlaneCapabilitiesKHR caps{};rc=vkGetDisplayPlaneCapabilitiesKHR(gpu,modes[mode].displayMode,plane,&caps);
+        if(rc!=VK_SUCCESS || !(caps.supportedAlpha&VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR)) continue;
+        VkDisplaySurfaceCreateInfoKHR info{VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR};
+        info.displayMode=modes[mode].displayMode;info.planeIndex=plane;info.planeStackIndex=planes[plane].currentStackIndex;
+        info.transform=VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR;info.alphaMode=VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR;info.imageExtent=modes[mode].parameters.visibleRegion;
+        VkSurfaceKHR selected=VK_NULL_HANDLE;
+        rc=vkCreateDisplayPlaneSurfaceKHR(instance,&info,nullptr,&selected);
+        if(rc!=VK_SUCCESS) {
+            if(rc!=VK_ERROR_INITIALIZATION_FAILED && rc!=VK_ERROR_FORMAT_NOT_SUPPORTED) return fail("create display surface",rc);
+            std::cout<<"[game-display] rejected mode="<<mode<<" rc="<<rc<<"; trying fallback\n";
+            continue;
+        }
+        surface=selected;
+        width=info.imageExtent.width;height=info.imageExtent.height;hz=modes[mode].parameters.refreshRate/1000.f;
+        const auto requested=mhp3rd::gpu::pacing::requested_rate(mhp3rd::settings::current().frame_rate,hz);
+        std::cout<<"[game-display] "<<width<<"x"<<height<<" hz="<<hz<<" mode="<<mode<<" plane="<<plane
+                 <<" requested_output="<<output<<" requested_fps="<<requested
+                 <<" presentation_limit="<<game_performance::capped_rate(requested,hz)
+                 <<" resolution_fallback="<<(height!=static_cast<int>(requested_height))<<"\n";
+        return true;
+    }
+    error="No usable display mode at or below "+output+"; last rc="+std::to_string(rc);
+    return false;
 #else
     (void)instance;(void)error;surface=VK_NULL_HANDLE;
     std::cout<<"[game-display] Host offscreen GE renderer; no console scanout evidence\n";

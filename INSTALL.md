@@ -78,6 +78,10 @@ This is one private handoff folder. The ISO and textures are included only in yo
 
 New settings default to **x6 internal resolution, 60-FPS presentation and HD textures enabled**. The game simulation runs at 30 FPS. L3+R3 opens web settings; touchpad toggles HUD, R2 maps Select, and holding L2 enables fast-forward. Existing saved preferences are retained.
 
+The Video page also offers x7/x8, 1080p/1440p/2160p game output and 120-FPS interpolation. Save and restart to apply them. 120 FPS needs a supported 120 Hz output; otherwise the game caps presentation to the available refresh. PS5 video settings and the display determine the HDMI signal. Initial game output is 1080p.
+
+For a graphics update, include the newly built `eboot.bin`, `sce_sys/param.json` and `yakumo/assets/web/` together: the metadata declares high-refresh support. Preserve the installed ISO, guest executable, verified textures and user data; unchanged resources do not need another transfer. Build files locally using this source workflow and retain the post-transfer permission step below.
+
 ## 4. Transfer over USB or FTP
 
 Keep the game closed during transfer and permission preparation.
@@ -92,6 +96,7 @@ Exact console locations:
 | --- | --- |
 | Game image | `/data/homebrew/PPSA99373/yakumo/game/game.iso` |
 | Textures | `/data/homebrew/PPSA99373/yakumo/textures/NPJB40001/` |
+| Local mod folders | `/data/homebrew/PPSA99373/yakumo/mods/` |
 | Savedata root | `/data/homebrew/PPSA99373/yakumo/saves/ms0/PSP/SAVEDATA/` |
 | Game save | `ULJM05800` inside that savedata root |
 | Saved quest data | `ULJM05800QST` inside that savedata root |
@@ -111,6 +116,8 @@ The payload prepares permissions only inside `PPSA99373`, preserving its game fi
 ## 6. Enjoy the hunt!
 
 You are ready to play. Press **L3 + R3** to open the [in-game web settings](README.md#in-game-web-settings). Save your changes and restart the game to apply them.
+
+For local mods, see [Mods in the README](README.md#mods) for folder layout, File Explorer/FTP transfers and priority controls. Preserve installed mods and `yakumo/config/mods.ini` when updating.
 
 Your progress is stored in `ULJM05800`, with saved quest data in `ULJM05800QST`. Keep these folders when updating the game or moving to another installation.
 

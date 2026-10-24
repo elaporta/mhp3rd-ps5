@@ -169,9 +169,51 @@ class SourceInstallTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Unsafe'):
             pipeline.texture_identity(self.pack)
 
+    def test_mesa_sources_reuse_locked_downloads_and_reject_conflicts(self):
+        import build_native_dependencies as native
+        source=self.base/'mesa-source'
+        (source/'subprojects').mkdir(parents=True)
+        archives={}
+        wrap=['[wrap-file]']
+        for kind in ('source','patch'):
+            filename=kind+'.archive'
+            raw=('Independently written '+kind+' fixture').encode()
+            cached=self.base/filename;cached.write_bytes(raw);archives[filename]=cached
+            wrap.extend([kind+'_filename = '+filename,kind+'_url = https://example.invalid/'+filename,
+                         kind+'_hash = '+hashlib.sha256(raw).hexdigest()])
+        (source/'subprojects/zlib.wrap').write_text('\n'.join(wrap)+'\n')
+        def retained(spec):
+            path=archives[spec['filename']]
+            self.assertEqual(native.digest(path),spec['sha256'])
+            return path
+        with patch.object(native,'download',side_effect=retained) as download:
+            native.prepare_mesa_subproject_sources(source)
+            native.prepare_mesa_subproject_sources(source)
+            self.assertEqual(download.call_count,4)
+            for name,path in archives.items():
+                self.assertEqual((source/'subprojects/packagecache'/name).read_bytes(),path.read_bytes())
+            different=source/'subprojects/packagecache/source.archive';different.write_bytes(b'preserve conflict')
+            with self.assertRaisesRegex(ValueError,'preserved'):
+                native.prepare_mesa_subproject_sources(source)
+            self.assertEqual(different.read_bytes(),b'preserve conflict')
+
     def test_reserved_build_outputs_rejected(self):
-        with self.assertRaisesRegex(ValueError,'reserved'):
-            install.output_path(str(ROOT/'out/data/game-boot/install'))
+        for directory in ('game-boot','archive','application-source-0.10.0','application-source-0.11.0','application-source-0.12.0'):
+            with self.subTest(directory=directory), self.assertRaisesRegex(ValueError,'reserved'):
+                install.output_path(str(ROOT/'out/data'/directory/'install'))
+
+    def test_video_title_metadata_and_unverified_build_identity(self):
+        import assemble_install as assembly
+        parameters=json.loads(assembly.json_bytes(assembly.application_parameters()))
+        self.assertEqual(parameters['attribute3'],0x40)
+        self.assertEqual(parameters['titleId'],'PPSA99373')
+        self.assertEqual(parameters['contentVersion'],'00.120.001')
+        pipeline=json.loads((ROOT/'tools/source_pipeline.json').read_text())
+        self.assertEqual(pipeline['build_identity'],'mhp3rd-ps5-source-0.12.0')
+        self.assertEqual(pipeline['build_revision'],'mods-r1')
+        self.assertEqual(pipeline['manual_source_installation_acceptance'],'TODO')
+        self.assertEqual(pipeline['previous_console_acceptance']['application_sha256'],
+                         '4e5d3dc3eb126a3c22c68771c26eb56b827ab943c7d7bb9caea33799adb31f21')
 
     def test_assembly_conflicts_preserve_unknown_files(self):
         import assemble_install as assembly

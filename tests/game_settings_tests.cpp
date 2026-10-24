@@ -58,6 +58,8 @@ int main(int argc, char**) { try {
     menu::apply_defaults();
     check(settings::current().adhoc_nickname=="mh3rd-ps5","runtime online nickname default is applied on a fresh title");
     check(menu::read().empty(), "missing file is an empty preference set");
+    check(defaults.at("ps5.output_resolution")=="1080p" && menu::output_resolution()=="1080p", "default native output");
+    check(menu::output_resolution({{"ps5.output_resolution","invalid"}})=="1080p", "invalid saved output falls back safely");
     std::set<std::string> keys;
     for (const auto& option : menu::catalog()) {
         check(keys.insert(option.key).second, "duplicate catalog key");
@@ -79,7 +81,8 @@ int main(int argc, char**) { try {
             }
         }
     }
-    check(keys.size() == 30 && !keys.count("ps5.input.l3") && !keys.count("ps5.input.r3"), "catalog exposes only five PS5 button assignments");
+    check(std::count_if(keys.begin(),keys.end(),[](const auto& key){return key.rfind("ps5.input.",0)==0;})==5 &&
+          !keys.count("ps5.input.l3") && !keys.count("ps5.input.r3"), "catalog exposes only five PS5 button assignments");
     check(defaults.at("ps5.input.l2")=="fast_forward"&&defaults.at("ps5.input.r2")=="select"&&
           defaults.at("ps5.input.touchpad")=="hide_hud"&&defaults.at("ps5.input.l1")=="l"&&
           defaults.at("ps5.input.r1")=="r","PS5 controls preserve their initial distribution");
@@ -106,8 +109,8 @@ int main(int argc, char**) { try {
                            "input.name", "text.font", "video.fullscreen", "video.unthrottled", "video.present_mode"})
         rejects([&] { (void)menu::prepare({}, {{key, "1"}}); });
     for (const auto& changes : std::vector<menu::Entries>{
-        {{"video.internal_scale", "0"}}, {{"video.internal_scale", "7"}}, {{"video.internal_scale", "4.0"}},
-        {{"video.frame_rate", "120"}}, {{"input.trigger", "0.049"}}, {{"input.dead_zone", "0.51"}},
+        {{"video.internal_scale", "0"}}, {{"video.internal_scale", "9"}}, {{"video.internal_scale", "4.0"}},
+        {{"video.frame_rate", "240"}}, {{"ps5.output_resolution", "4k"}}, {{"input.trigger", "0.049"}}, {{"input.dead_zone", "0.51"}},
         {{"audio.volume", "101"}}, {{"audio.volume", "-1"}}, {{"audio.mute", "true"}},
         {{"input.dead_zone", "NaN"}}, {{"input.dead_zone", "inf"}}, {{"input.camera_speed", "30x"}},
         {{"input.pad.cross", "Space"}}, {{"input.pad.cross", "Pad Paddle L1"}},
@@ -117,7 +120,15 @@ int main(int argc, char**) { try {
         rejects([&] { (void)menu::prepare({}, changes); });
     rejects([&]{(void)menu::prepare({},{{"ps5.input.l2","launch_browser"}});});
     check(menu::resolution_label(4) == "1920x1088" && menu::resolution_label(6) == "2880x1632", "resolution labels");
-    rejects([] { (void)menu::resolution_label(7); });
+    check(menu::resolution_label(7)=="3360x1904" && menu::resolution_label(8)=="3840x2176", "extended scale dimensions");
+    rejects([] { (void)menu::resolution_label(9); });
+    for(const char* scale:{"7","8"}) {
+        const auto prepared=menu::prepare({},{{"video.internal_scale",scale},{"video.frame_rate","120"},
+                                              {"ps5.output_resolution","2160p"}});
+        const auto loaded=menu::values(prepared.entries);
+        check(loaded.at("video.internal_scale")==scale && loaded.at("video.frame_rate")=="120" &&
+              loaded.at("ps5.output_resolution")=="2160p", "extended video choices survive parsing");
+    }
     const auto& options = menu::catalog();
     const auto option = [&](const char* key) -> const menu::Option& {
         for (const auto& entry : options) if (entry.key == key) return entry;
@@ -142,9 +153,12 @@ int main(int argc, char**) { try {
     check(retained.at("ps5.network_trace")=="1"&&retained.at("ps5.input.r3")=="legacy-value"&&
           retained.at("ps5.input.l3")=="legacy-value","internal INI writes preserve old, hidden PS5 preferences");
     auto saved = menu::save(original, {{"video.fast_forward", "toggle"}, {"video.fast_forward_speed", "6"},
-        {"ps5.input.l2", "select"}});
+        {"ps5.input.l2", "select"}, {"ps5.output_resolution", "1440p"}});
     const auto live_before = settings::to_entries(settings::current());
     check(saved.restart_required && menu::read() == saved.entries, "complete transaction saved");
+    check(menu::values(menu::read()).at("ps5.output_resolution")=="1440p" && menu::output_resolution()=="1080p",
+          "output selection is persisted but the running output stays unchanged");
+    check(menu::retain_pending({}).at("ps5.output_resolution")=="1440p", "internal save retains pending native output");
     for (const auto& [key, value] : original) {
         if (key == "settings.version") {
             check(saved.entries.at(key) == "3", "settings schema upgrades on save");

@@ -9,7 +9,7 @@ import sys
 import build_native_dependencies as native
 from source_support import ROOT, DATA, digest, run, save_json
 
-APP = DATA/'application-source-0.10.0'
+APP = DATA/'application-source-0.12.0'
 
 
 def native_aot():
@@ -72,9 +72,16 @@ def payload():
 
 
 def host_tests():
+    # A clean source archive has no retained host AOT cache. Build the generated
+    # main archive before linking the feature-test application's entry point.
+    from build_guest import host_aot
+    # Host checks verify behavior/signatures, not timing. Keep their complete
+    # generated corpus at O0; the separate native application remains O2.
+    aot=host_aot(optimization=0)
     build = APP/'host'
     run(['cmake','-S',ROOT/'cmake/install-runtime','-B',build,'-G','Ninja','-DCMAKE_CXX_COMPILER=clang++-18',
-         '-DMHP3RD_VK_HEADERS='+str(ROOT/'deps/PS5_Mesa/include')],DATA/'build-logs/features-configure.log')
+         '-DMHP3RD_VK_HEADERS='+str(ROOT/'deps/PS5_Mesa/include'),
+         '-DMHP3RD_HOST_AOT_ARCHIVE='+str(aot)],DATA/'build-logs/features-configure.log')
     run(['cmake','--build',build,'-j2'],DATA/'build-logs/features-build.log')
     run(['ctest','--test-dir',build,'--output-on-failure','--timeout','90'],DATA/'build-logs/features-tests.log')
 

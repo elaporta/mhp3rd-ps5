@@ -153,8 +153,9 @@ const std::vector<Option>& catalog() {
             add(key, label, section, Kind::Toggle, 0, 1, {"0", "1"});
         };
         using S = Section; using K = Kind;
-        add("video.internal_scale", "Internal resolution", S::Video, K::Integer, 1, 6);
-        add("video.frame_rate", "Presentation FPS (30 FPS game)", S::Video, K::Choice, 0, 0, {"30", "45", "60"});
+        add("video.internal_scale", "Internal resolution", S::Video, K::Integer, 1, 8);
+        add("ps5.output_resolution", "Output resolution", S::Video, K::Choice, 0, 0, {"1080p", "1440p", "2160p"});
+        add("video.frame_rate", "Presentation FPS (30 FPS game)", S::Video, K::Choice, 0, 0, {"30", "45", "60", "120"});
         toggle("video.frame_rate_auto", "Lower FPS when behind", S::Video);
         add("video.aspect", "Aspect ratio", S::Video, K::Choice, 0, 0, {"original", "stretch", "fill"});
         toggle("video.texture_pack", "Installed HD textures", S::Video);
@@ -184,7 +185,8 @@ const std::vector<Option>& catalog() {
         toggle("ps5.network_trace", "Detailed online logging", S::Online);
         const auto defaults = settings::to_entries(settings::defaults());
         for (auto& option : out) {
-            if (option.key == "ps5.network_trace") option.initial = "0";
+            if (option.key == "ps5.output_resolution") option.initial = "1080p";
+            else if (option.key == "ps5.network_trace") option.initial = "0";
             else if (option.key == "video.performance") option.initial = "off";
             else if (option.key == "network.nickname") option.initial = "mh3rd-ps5";
             else if (option.key.rfind("ps5.input.",0)==0) {
@@ -198,6 +200,7 @@ const std::vector<Option>& catalog() {
 }
 Entries values(const Entries& persisted) {
     auto result = settings::to_entries(settings::from_entries(persisted));
+    result["ps5.output_resolution"] = output_resolution(persisted);
     if (!persisted.count("network.nickname")) result["network.nickname"] = "mh3rd-ps5";
     const auto trace = persisted.find("ps5.network_trace");
     result["ps5.network_trace"] = trace == persisted.end() ? "0" : trace->second;
@@ -244,8 +247,17 @@ bool enabled(const Option& option, const Entries& entries) {
     return true;
 }
 std::string resolution_label(unsigned scale) {
-    if (scale < 1 || scale > 6) fail("unsupported internal scale");
+    if (scale < 1 || scale > 8) fail("unsupported internal scale");
     return std::to_string(480 * scale) + "x" + std::to_string(272 * scale);
+}
+std::string output_resolution(const Entries& persisted) {
+    const auto it = persisted.find("ps5.output_resolution");
+    if (it != persisted.end() && (it->second == "1440p" || it->second == "2160p")) return it->second;
+    return "1080p";
+}
+const std::string& output_resolution() {
+    static const auto selected = output_resolution(read());
+    return selected;
 }
 Prepared prepare(const Entries& persisted, const Entries& changes, std::optional<Section> restore) {
     Entries patch;
@@ -270,6 +282,7 @@ Prepared prepare(const Entries& persisted, const Entries& changes, std::optional
         settings::controls_edited(current);
     }
     auto after = settings::to_entries(current);
+    after["ps5.output_resolution"] = ordinary.at("ps5.output_resolution");
     after["ps5.network_trace"] = ordinary.at("ps5.network_trace");
     for(const auto* key:kPs5PadKeys) after[key]=ordinary.at(key);
     Prepared result{persisted, {}, false};
@@ -360,6 +373,8 @@ Prepared save(const Entries& expected, const Entries& changes, std::optional<Sec
 Entries retain_pending(Entries entries) {
     try {
         const auto persisted=read();
+        const auto output=persisted.find("ps5.output_resolution");
+        if(output!=persisted.end()) entries[output->first]=output->second;
         const auto trace=persisted.find("ps5.network_trace");
         if(trace!=persisted.end()) entries[trace->first]=trace->second;
         for(const auto* key:kPs5PadKeys) {

@@ -572,7 +572,7 @@
     },
     "profiles/mhp3rd/host/mods/mhp3rd_mods.cpp": {
       "input_sha256": "916cb8ba1eb89eca78ba2a2202fa55460d879956b4f12cc817a71739ec5e34c2",
-      "output_sha256": "ed77fa00bfb12e88500f73cba0d1d77b7c6b04cdc6d717e6474de61c38855d5c"
+      "output_sha256": "000983ec0ea5f2d7e1c6a2627100fed8f49ef88b2da64809079617fb3d6a6f5a"
     },
     "profiles/mhp3rd/host/mods/mhp3rd_mods.hpp": {
       "input_sha256": "f9167beb23f644a3eea5f4fc88b3e88343a792a921812510760a6cf23fa83c89",

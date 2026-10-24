@@ -49,11 +49,14 @@ def prepare(image):
     return elf
 
 
-def host_aot():
-    build = DATA/'game-boot/host-aot'
+def host_aot(optimization=2):
+    if optimization not in (0,2):
+        raise ValueError('Only diagnostic O0 and native-equivalent O2 host builds are supported')
+    build = DATA/('game-boot/host-aot-diagnostic' if optimization==0 else 'game-boot/host-aot')
     run(['cmake','-S',ROOT/'cmake/game-aot','-B',build,'-G','Ninja','-DCMAKE_CXX_COMPILER=clang++-18',
-         '-DYAKUMO_AOT_OPTIMIZATION=2'],DATA/'build-logs/host-aot-configure.log')
+         '-DYAKUMO_AOT_OPTIMIZATION='+str(optimization)],DATA/'build-logs/host-aot-configure.log')
     run(['cmake','--build',build,'-j2'],DATA/'build-logs/host-aot-build.log')
+    return build/'libactual_game_aot.a'
 
 
 if __name__ == '__main__':

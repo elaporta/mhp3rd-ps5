@@ -354,6 +354,9 @@ size_=owned_.size(); data_=owned_.data(); return true;''')
             if name.endswith('/install/user_data.cpp'):
                 text = function(text, 'std::filesystem::path user_data_directory()',
                                 'return yakumo::game_files::root() / "yakumo/config";')
+            if name.endswith('/mods/mhp3rd_mods.cpp'):
+                text = function(text, 'fs::path mods_directory()',
+                                'return yakumo::game_files::root() / "yakumo/mods";')
             if name.endswith('/audio/audio_sink.cpp'):
                 text = '#include "game_platform.hpp"\n' + text
                 text = replace(text, 'std::cout << "Audio: built without SDL; running silent\\n";',

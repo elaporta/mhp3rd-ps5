@@ -1,7 +1,8 @@
 {
   "format": 2,
   "purpose": "Source workflow capabilities and acceptance contract; actual build status is recorded privately per output.",
-  "build_identity": "mhp3rd-ps5-source-0.10.0",
+  "build_identity": "mhp3rd-ps5-source-0.12.0",
+  "build_revision": "mods-r1",
   "entry": "tools/prepare_install.sh",
   "precompiled_baseline": false,
   "stages": [
@@ -18,10 +19,22 @@
   "projection_lock": "source_projection.lock.json",
   "native_probe_evidence": "native_probe_evidence.json",
   "native_overlay_strategy": "Preserve accepted interpreter fallback",
-  "manual_source_installation_acceptance": "HARDWARE_VERIFIED",
+  "manual_source_installation_acceptance": "TODO",
+  "manual_mods_update_acceptance": "HARDWARE_VERIFIED",
+  "current_console_acceptance": {
+    "build_identity": "mhp3rd-ps5-source-0.12.0",
+    "revision": "mods-r1",
+    "reported_date": "2026-10-24",
+    "scope": "User-confirmed incremental update, web menu and mod operation; latest log shows two virtual file replacements after restart.",
+    "identified_local_application_sha256": "8e7c6da9a4d0fc58b1ff19d661b6e4fc689ce3ab3c98fd6c0a085c7d439f0136",
+    "console_binary_hash_supplied": false,
+    "log_sha256": "c476ea44cfeb4cb9473f4860922ee45cc3c3406c9750bea9d3b9ee1760c451e4",
+    "future_builds_require_acceptance": true
+  },
   "private_results": "out/data/install-state/; PPSA99373/yakumo/assets/build.json",
   "console_rule": "Console acceptance records identify the tested application and payload hashes.",
-  "console_acceptance": {
+  "previous_console_acceptance": {
+    "build_identity": "mhp3rd-ps5-source-0.10.0",
     "reported_date": "2026-10-19",
     "result": "User transferred the generated game to PS5 and reported that it worked very well.",
     "application_sha256": "4e5d3dc3eb126a3c22c68771c26eb56b827ab943c7d7bb9caea33799adb31f21",

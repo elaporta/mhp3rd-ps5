@@ -31,6 +31,9 @@ std::array<Ps5Assignment, 5> ps5_assignments(const Entries& persisted);
 void apply_defaults();
 bool enabled(const Option&, const Entries& values);
 std::string resolution_label(unsigned scale);
+// Native-only output preference, captured at startup and never changed live.
+std::string output_resolution(const Entries& persisted);
+const std::string& output_resolution();
 struct Prepared {
     Entries entries;
     std::vector<std::string> changed;

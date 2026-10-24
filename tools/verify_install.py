@@ -42,6 +42,16 @@ def verify(output):
     build=json.loads((title/'yakumo/assets/build.json').read_text())
     if build.get('source_only') is not True or build.get('precompiled_baseline') is not False:
         raise ValueError('Source installation provenance differs')
+    if build.get('build')=='mhp3rd-ps5-source-0.11.0':
+        if param.get('contentVersion')!='00.110.000' or param.get('attribute3')!=0x40:
+            raise ValueError('Graphics build identity or high-refresh metadata differs')
+    if build.get('build')=='mhp3rd-ps5-source-0.12.0':
+        expected='00.120.001' if build.get('revision')=='mods-r1' else '00.120.000'
+        if param.get('contentVersion')!=expected or param.get('attribute3')!=0x40:
+            raise ValueError('Mods build identity or high-refresh metadata differs')
+        mods=build.get('mods',{})
+        if not (title/'yakumo/mods').is_dir() or mods.get('apply')!='restart' or mods.get('new_mods_enabled') is not False:
+            raise ValueError('Local mods layout or restart policy differs')
     if digest(title/'yakumo/game/game.iso')!=build['inputs']['iso_sha256']:
         raise ValueError('Private image differs')
     if digest(title/'yakumo/game/EBOOT.ELF')!='55c0598436c0753b04331f8e95d406f832d9217806e3a896fed0e88b33637d8c':

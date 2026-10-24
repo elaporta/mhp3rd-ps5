@@ -20,8 +20,8 @@
 namespace yakumo::game_performance {
 inline std::string cache_profile{"performance-r2"};
 inline double capped_rate(double requested, double refresh) {
-    const auto cap=std::isfinite(refresh)&&refresh>=1.0?std::min(60.0,refresh):60.0;
-    return std::min(requested,cap);
+    const auto cap=std::isfinite(refresh)&&refresh>=1.0?std::min(120.0,refresh):60.0;
+    return std::isfinite(requested)&&requested>0.0?std::min(requested,cap):30.0;
 }
 inline yakumo::game_files::path cache_directory() {
     return yakumo::game_files::root()/"yakumo/cache"/cache_profile;
